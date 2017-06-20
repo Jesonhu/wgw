@@ -1,15 +1,32 @@
 <template>
   <div class="article-list">
-    <mt-loadmore
-      :bottom-method="loadBottom"
-      :bottomPullText="bottomPullText"
-      :bottomDropText="bottomDropText"
-      :bottom-all-loaded="allLoaded"
-      ref="loadmore">
-      <ul>
-        <li v-for="item in testList">{{ item }}</li>
-      </ul>
-    </mt-loadmore>
+    <div class="page-loadmore-wrapper"
+       ref="wrapper"
+       :style="{height: wrapperHeight + 'px'}">      
+      <mt-loadmore
+        :bottom-method="loadBottom"
+        :bottomPullText="bottomPullText"
+        :bottomDropText="bottomDropText"
+        :bottomLoadingText="bottomLoadingText  "
+        :bottom-all-loaded="allLoaded"
+        @bottom-status-change="handleBottomChange"
+        ref="loadmore">
+        <ul>
+          <li v-for="item in testList" class="loadmore-item">{{ item }}</li>
+        </ul>
+        <!--bottom提示-->
+        <!--<div class="mint-loadmore-bottom" 
+        slot="bottom">
+          <span 
+           v-show="true"
+           :class="{ 'is-rotate': bottomStatus === 'drop' }"></span>
+          <span
+           v-show="bottomStatus === 'loading'">
+           <mt-spinner type="snake"></mt-spinner>
+          </span>
+        </div>-->
+      </mt-loadmore>
+    </div>
 
     <tabbar></tabbar>
   </div>
@@ -22,25 +39,37 @@
   export default {
     data () {
       return {
-        testList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        allLoaded: true,
-        bottomPullText: '上拉come',
-        bottomDropText: '小伙子继续上拉'
+        testList: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        allLoaded: false,
+        bottomStatus: '',
+        wrapperHeight: 0,
+        bottomPullText: '↑',
+        bottomDropText: '松开加载更多',
+        bottomLoadingText: '拼命加载中...'
       }
     },
     methods: {
-      loadTop () {
-        console.log('下拉')
+      handleBottomChange (status) {
+        // console.log(status) pull drop loading
+        this.bottomStatus = status
       },
       loadBottom () {
-        console.log('上拉')
         const This = this
         setTimeout(function () {
-          for (let i = 0; i < 10; i++) {
-            This.testList.push('i' + i)
+          let lastLength = This.testList.length
+          if (lastLength < 40) {
+            for (let i = 0; i < 10; i++) {
+              This.testList.push(lastLength + i)
+            }
+          } else {
+            this.allLoaded = true // 不能再上拉
           }
+          This.$refs.loadmore.onBottomLoaded() // 加载完后的回调函数
         }, 1500)
       }
+    },
+    mounted () {
+      this.wrapperHeight = document.documentElement.clientHeight - this.$refs.wrapper.getBoundingClientRect().top
     },
     components: {
       tabbar,
@@ -50,10 +79,20 @@
 </script>
 
 <style scoped lang="scss">
+  .wrapper{
+    overflow: scroll;
+  }
+  .mint-loadmore{
+    margin-bottom:70px;
+  }
+  .loadmore-item,
   .infinite-list{
     height:80px;
     line-height: 80px;
     margin-bottom:20px;
     background-color:#eee;
+  }
+  .is-rotate{
+    font-size:12px;
   }
 </style>
