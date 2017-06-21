@@ -1,10 +1,9 @@
 <template>
   <div class="article-list">
-    <mt-loadmore
+    <mt-loadmore class="c-loadmore"
       :bottom-method="loadBottom"
       :bottomPullText="bottomPullText"
       :bottomDropText="bottomDropText"
-      :bottom-all-loaded="allLoaded"
       ref="loadmore">
       <ul>
         <li v-for="item in testList">{{ item }}</li>
@@ -23,7 +22,6 @@
     data () {
       return {
         testList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        allLoaded: true,
         bottomPullText: '上拉come',
         bottomDropText: '小伙子继续上拉'
       }
@@ -40,6 +38,8 @@
             This.testList.push('i' + i)
           }
         }, 1500)
+      },
+      allLoaded () {
       }
     },
     components: {
@@ -55,5 +55,8 @@
     line-height: 80px;
     margin-bottom:20px;
     background-color:#eee;
+  }
+  .c-loadmore{
+    margin-bottom:100px;
   }
 </style>
