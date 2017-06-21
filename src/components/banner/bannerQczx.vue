@@ -1,0 +1,91 @@
+<template>
+<div>
+  <swiper class="c-banner-swiper"
+    :options="swiperOption"
+    ref="mySwiper"
+  >
+      <!-- 这部分放你要渲染的那些内容 -->
+      <swiper-slide
+        v-for="item in swiper"
+        :key="item"
+      >
+        <a href="">
+            <img :src="item.image" alt="">
+        </a>
+      </swiper-slide>
+      <!-- 左右按钮 -->
+      <!--<div class="swiper-button-prev" slot="button-prev"></div>
+      <div class="swiper-button-next" slot="button-next"></div> -->
+      <!-- 这是轮播的小圆点 -->
+      <div class="swiper-pagination" slot="pagination"></div>
+  </swiper>
+</div>
+</template>
+
+<script>
+    import { swiper, swiperSlide } from 'vue-awesome-swiper'
+
+    export default {
+      data () {
+        return {
+          swiperOption: {
+            notNextTick: true,
+            // swiper configs 同官方api配置
+            autoplay: 3000,
+            // pagination: '.swiper-pagination',
+            pagination: '.swiper-pagination',
+            loop: true,
+            slidesPerView: 'auto',
+            centeredSlides: true,
+            paginationClickable: true,
+            spaceBetween: 0
+          },
+          swiper: [
+            {
+              'image': 'https://pic.kuaizhan.com/g1/M00/3C/73/wKjmqVghSN-Adb5jAATmNFnetTk8066618/imageView/v1/thumbnail/640x320'
+            },
+            {
+              'image': 'https://pic.kuaizhan.com/g2/M01/3D/82/wKjmqlghSPKAMnkWAASwuOI6-cQ8594518/imageView/v1/thumbnail/640x320'
+            }
+          ]
+        }
+      },
+      components: {
+        swiper,
+        swiperSlide
+      }
+    }
+</script>
+
+<style lang="scss" scope>
+  /* 青春在线 */
+  .c-banner-swiper{
+    height:170.29px;
+
+    img{
+      height:170.29px;
+      width:100%;
+    }
+    .swiper-pagination-bullet{
+      background:#fff;
+      opacity:1;
+
+      &.swiper-pagination-bullet-active{
+        background:#000;
+      }
+    }
+  }
+  .swiper-pagination-fraction,
+  .swiper-pagination-custom,
+  .swiper-container-horizontal > .swiper-pagination-bullets{
+    bottom:0;
+    text-align: right;
+    border-radius:0;
+  }
+  .swiper-pagination-bullet{
+    border-radius:0;
+  }
+
+
+</style>
+
