@@ -14,7 +14,11 @@ body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, dd, l
    outline: none;
  }
 }
-
+*,
+*:before,
+*:after{
+  box-sizing: border-box;
+}
 /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
 ::-webkit-scrollbar
 {
@@ -51,13 +55,13 @@ html,body{
   /*background-color: #F5F5F5;*/
 }
 
-
+.clearfix:after,
 .clear:after{
   content: '';
   display: block;
   clear: both;
 }
-
+.clearfix,
 .clear{
   zoom:1;
 }

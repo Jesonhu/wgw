@@ -1,14 +1,19 @@
 <template>
   <div class="article-list">
-    <mt-loadmore class="c-loadmore"
-      :bottom-method="loadBottom"
-      :bottomPullText="bottomPullText"
-      :bottomDropText="bottomDropText"
-      ref="loadmore">
-      <ul>
-        <li v-for="item in testList">{{ item }}</li>
-      </ul>
-    </mt-loadmore>
+    <div class="page-loadmore-wrapper"
+       ref="wrapper"
+       :style="{height: wrapperHeight + 'px'}">
+      <mt-loadmore
+        :bottom-method="loadBottom"
+        :bottomPullText="bottomPullText"
+        :bottomDropText="bottomDropText"
+        :bottomLoadingText="bottomLoadingText  "
+        :bottom-all-loaded="allLoaded"
+        @bottom-status-change="handleBottomChange"
+        ref="loadmore">
+        <new-list :list="testList"></new-list>
+      </mt-loadmore>
+    </div>
 
     <tabbar></tabbar>
   </div>
@@ -16,47 +21,67 @@
 
 <script>
   import { Loadmore } from 'mint-ui'
-  import tabbar from 'components/bottom-nav/nav1'
+  import tabbar from 'components/bottom-nav/nav2'
+  import newList from 'components/newList/newList1'
 
   export default {
     data () {
       return {
-        testList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        bottomPullText: '上拉come',
-        bottomDropText: '小伙子继续上拉'
+        testList: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        allLoaded: false,
+        bottomStatus: '',
+        wrapperHeight: 0,
+        bottomPullText: '↑',
+        bottomDropText: '松开加载更多',
+        bottomLoadingText: '拼命加载中...'
       }
     },
     methods: {
-      loadTop () {
-        console.log('下拉')
+      handleBottomChange (status) {
+        // console.log(status) pull drop loading
+        this.bottomStatus = status
       },
       loadBottom () {
-        console.log('上拉')
         const This = this
         setTimeout(function () {
-          for (let i = 0; i < 10; i++) {
-            This.testList.push('i' + i)
+          let lastLength = This.testList.length
+          if (lastLength < 40) {
+            for (let i = 0; i < 10; i++) {
+              This.testList.push(lastLength + i)
+            }
+          } else {
+            this.bottomLoadingText = '没有了'
+            this.allLoaded = true // 不能再上拉
           }
+          This.$refs.loadmore.onBottomLoaded() // 加载完后的回调函数
         }, 1500)
       },
       allLoaded () {
       }
     },
+    mounted () {
+      this.wrapperHeight = document.documentElement.clientHeight - this.$refs.wrapper.getBoundingClientRect().top
+    },
     components: {
       tabbar,
-      Loadmore
+      Loadmore,
+      newList
     }
   }
 </script>
 
 <style scoped lang="scss">
+  .wrapper{
+    overflow: scroll;
+  }
+  .mint-loadmore{
+    margin-bottom:70px;
+  }
+  .loadmore-item,
   .infinite-list{
     height:80px;
     line-height: 80px;
     margin-bottom:20px;
     background-color:#eee;
-  }
-  .c-loadmore{
-    margin-bottom:100px;
   }
 </style>

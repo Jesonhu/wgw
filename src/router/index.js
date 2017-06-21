@@ -14,11 +14,12 @@ export default new Router({
       component: Home
     },
     {
-      path: '/articleList',
+      path: '/new',
       component: articleList
     },
     {
-      path: '/articleDetail/:id',
+      path: '/detail/:id',
+      name: 'detail',
       component: articleDetail
     }
   ]

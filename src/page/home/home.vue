@@ -27,7 +27,7 @@
 </template>
 
 <script>
-    import banner from 'components/banner/banner2'
+    import banner from 'components/banner/bannerQczx'
     import menu from 'components/main-menu/mobil01'
     import bg from 'components/full-bg/bg'
     import tabbar from 'components/bottom-nav/nav1'

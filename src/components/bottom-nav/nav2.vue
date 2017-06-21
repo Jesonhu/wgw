@@ -1,18 +1,18 @@
 <template>
-  <div class="tabbar">
-    <a class="tab-item" href="tel:12345678910">
-      <i class="tab-item-icon fa fa-phone-square"></i>
-      <span class="tab-item-name">电话</span>
-    </a>
+  <footer class="tabbar">
+    <div class="tab-item" @click="$router.go(-1)">
+      <i class="tab-item-icon fa fa-mail-reply"></i>
+      <span class="tab-item-name">后退</span>
+    </div>
     <router-link class="tab-item" to="/">
       <i class="tab-item-icon fa fa-home"></i>
       <span class="tab-item-name">首页</span>
     </router-link>
-    <router-link class="tab-item" to="/">
-      <i class="tab-item-icon fa fa-refresh"></i>
-      <span class="tab-item-name">刷新</span>
-    </router-link>
-  </div>
+    <div class="tab-item" @click="$router.go(1)">
+      <i class="tab-item-icon fa fa-mail-forward"></i>
+      <span class="tab-item-name">前进</span>
+    </div>
+  </footer>
 </template>
 
 <script>
@@ -28,10 +28,10 @@
     height:51px;
     width:100%;
     padding: 5px;
-    border-top:2px dashed #F04C48;
+    /*border-top:2px dashed #F04C48;*/
     text-align: center;
     background-color:#fff;
-    color:#F04C48;
+    box-shadow: 0 0 3px 3px rgba(0,0,0,.2);
 
     .tab-item{
       flex:1;
@@ -41,14 +41,12 @@
         width:24px;
         height:24px;
         margin: 0 auto;
-        color:#F04C48;
       }
 
       .tab-item-name{
         display:block;
         text-align: center;
         font-size:12px;
-        color:#F04C48;
       }
     }
   }

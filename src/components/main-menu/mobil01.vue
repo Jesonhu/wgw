@@ -16,7 +16,7 @@
     <div class="menu-multi">
         <div class="list-line">
             <div class="item-wrap">
-                <router-link class="item" to="/articleList">
+                <router-link class="item" to="/new">
                     <img class="item-img" src="../../images/children.png" alt="">
                     <div class="item-name">最新活动</div>
                 </router-link>
@@ -24,21 +24,7 @@
             <div class="item-wrap">
                 <router-link class="item" to="">
                     <img class="item-img" src="../../images/children.png" alt="">
-                    <div class="item-name">最新活动</div>
-                </router-link>
-            </div>
-        </div>
-        <div class="list-line">
-            <div class="item-wrap">
-                <router-link class="item" to="">
-                    <img class="item-img" src="../../images/children.png" alt="">
-                    <div class="item-name">最新活动</div>
-                </router-link>
-            </div>
-            <div class="item-wrap">
-                <router-link class="item" to="">
-                    <img class="item-img" src="../../images/children.png" alt="">
-                    <div class="item-name">最新活动</div>
+                    <div class="item-name">布朗分园</div>
                 </router-link>
             </div>
         </div>
@@ -46,13 +32,27 @@
             <div class="item-wrap">
                 <router-link class="item" to="">
                     <img class="item-img" src="../../images/children.png" alt="">
-                    <div class="item-name">最新活动</div>
+                    <div class="item-name">师资力量</div>
                 </router-link>
             </div>
             <div class="item-wrap">
                 <router-link class="item" to="">
                     <img class="item-img" src="../../images/children.png" alt="">
-                    <div class="item-name">最新活动</div>
+                    <div class="item-name">布朗名片</div>
+                </router-link>
+            </div>
+        </div>
+        <div class="list-line">
+            <div class="item-wrap">
+                <router-link class="item" to="">
+                    <img class="item-img" src="../../images/children.png" alt="">
+                    <div class="item-name">布朗环境</div>
+                </router-link>
+            </div>
+            <div class="item-wrap">
+                <router-link class="item" to="">
+                    <img class="item-img" src="../../images/children.png" alt="">
+                    <div class="item-name">优质课程</div>
                 </router-link>
             </div>
         </div>
@@ -163,12 +163,12 @@
            align-items: center;
            font-size: 12px;
            height:90px;
-           background-color:green;
+           background-color:#48cfae;
 
-           &:nth-child(2n+1){
+           &:nth-child(6n+0){
              background-color:#48cfae;
            }
-           &:nth-child(2n){
+           &:nth-child(7n+0){
              background-color:green;
            }
            .item-img,
