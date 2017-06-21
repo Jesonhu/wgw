@@ -55,16 +55,18 @@
     background:#f2f2f2;
 
     .list{
-      dispaly:flex;
+      display:flex;
       flex-wrap: nowrap;
       .item{
         flex:1;
         .item-link{
           display:block;
+          margin:10px;
           .item-img{
             display:block;
             width:$imgWrapSize;
             height:$imgWrapSize;
+            margin: 0 auto;
             .img{
               display: block;
               width:100%;
@@ -74,6 +76,7 @@
           .item-name{
             display:block;
             text-align: center;
+            font-size:12px;
           }
         }
       }
@@ -107,7 +110,7 @@
       margin-left:17px;
     }
     .title-name{
-      z-index: 200;
+      z-index: 2;
       position: relative;
       flex:1;
       padding-top:2px;
