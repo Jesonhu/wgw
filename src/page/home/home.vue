@@ -12,7 +12,14 @@
       </div>
       <side-bar :show="showSideBar" @parent="sideBarInit"></side-bar>
 
+      <!-- 列表 -->
       <pic-group></pic-group>
+
+      <!-- 返回顶部 -->
+      <back-top></back-top>
+
+      <!-- 版权 -->
+      <copy-right></copy-right>
     </div>
 
 </template>
@@ -22,7 +29,9 @@
     import menu from 'components/main-menu/menuIcon'
     import childMenu from 'components/main-menu/childMenu'
     import sideBar from 'components/sidebar/sidebar'
-    import picGroup from 'components/newList/twoList'
+    import picGroup from 'components/newList/twoColList'
+    import backTop from 'components/backToTop/space'
+    import copyRight from 'components/copyRight/copyRight'
 //    import { Tabbar, TabItem } from 'mint-ui'
 
     export default {
@@ -38,11 +47,13 @@
         }
       },
       components: {
-        banner,
         vMenu: menu,
+        banner,
         childMenu,
         sideBar,
-        picGroup
+        picGroup,
+        backTop,
+        copyRight
       }
     }
 </script>

@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/page/home/home'
-import articleList from '@/page/articleList/articleList'
-import articleDetail from '@/page/articleDetail/articleDetail'
+import newList from '@/page/newList/newList'
 
 Vue.use(Router)
 
@@ -14,13 +13,9 @@ export default new Router({
       component: Home
     },
     {
-      path: '/new',
-      component: articleList
-    },
-    {
-      path: '/detail/:id',
-      name: 'detail',
-      component: articleDetail
+      path: '/new/:id',
+      name: 'hasSearchList',
+      component: newList
     }
   ]
 })

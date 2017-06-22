@@ -1,11 +1,22 @@
 <template>
   <div class="sidebar" :class="{active:isActive}">
     <div class="bg-wrap" @click="active"></div>
-    <div class="con-wrap"></div>
+    <div class="con-wrap">
+      <div class="avatar-wrap">
+        <a href="" class="link">
+          <img alt="" class="img"
+           src="https://kzcdn.itc.cn/res/passport/images/default_headimg.png">
+        </a>
+      </div>
+
+      <slide-menu></slide-menu>
+    </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+    import slideMenu from 'components/slideMenu/slideMenu'
+
     export default {
       name: 'sidebar',
       props: {
@@ -30,7 +41,9 @@
           this.isActive = this.show
         }
       },
-      components: {}
+      components: {
+        slideMenu
+      }
     }
 </script>
 
@@ -55,6 +68,21 @@
     height:100%;
     width: 220px;
     background-color:#4d4d4d;
+    .avatar-wrap{
+      height:125px;
+      border-bottom:1px solid #424242;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      .link{
+        display:block;
+        width:74px;
+        height:74px;
+        line-height: 74px;
+        border-radius:50%;
+        overflow: hidden;
+      }
+    }
   }
   .bg-wrap{
     flex:1;

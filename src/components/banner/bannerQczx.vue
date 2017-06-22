@@ -31,7 +31,7 @@
           swiperOption: {
             notNextTick: true,
             // swiper configs 同官方api配置
-            autoplay: 3000,
+            autoplay: 1500,
             // pagination: '.swiper-pagination',
             pagination: '.swiper-pagination',
             loop: true,

@@ -49,6 +49,7 @@
 
   .main-nav{
     hegiht: $outerHei;
+    margin-top: 10px;
     font-size:14px;
     .nav-list{
       display:flex;
