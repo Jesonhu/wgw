@@ -1,21 +1,23 @@
 <template>
   <ul class="new-list1">
     <li class="item"
-     v-for="item in 8"
+     v-for="item in list"
      @click="selectNew(item, $event)">
       <a href="javascript:;" class="link">
         <div class="img-wrap">
-          <img class="img" src="https://pic.kuaizhan.com/g1/M01/CE/E7/wKjmqVk1YB2AbXwxAAkheEILxyg9079773/imageView/v1/thumbnail/240x180" alt="">
+          <img class="img"
+           :src="item.listPic"
+           :alt="item.name">
         </div>
         <div class="bd">
-          <h3 class="title">乐在棋中——校园棋艺大赛</h3>
-          <p class="time">2017-05-26</p>
+          <h3 class="title">{{item.name}}</h3>
+          <p class="time">{{item.pubTime}}</p>
           <p class="stat">
             <span class="look">
-              <i class="fa fa-eye"></i>233
+              <i class="fa fa-eye"></i>{{item.lookCount}}
             </span>
             <span class="like">
-              <i class="fa fa-heart-o"></i>66
+              <i class="fa fa-heart-o"></i>{{item.likeCount}}
             </span>
           </p>
         </div>
@@ -31,6 +33,7 @@
   import newDetail from 'components/newDetail/newDetail'
 
   export default {
+    props: ['list'],
     data () {
       return {
         selectedNew: {} // 保存当前点击的文章
@@ -44,6 +47,9 @@
       newDetail () { // 处理详情页面做出的更改
 
       }
+    },
+    mounted () {
+      console.log(this.list)
     },
     components: {
       newDetail

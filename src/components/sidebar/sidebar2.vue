@@ -3,7 +3,8 @@
     <div class="bg-wrap" @click="active"></div>
     <div class="con-wrap">
       <div class="hd">
-        <a href="" class="link">
+        <router-link class="link"
+         to="/join">
           <div class="user-info">
             <div class="user-avatar">
               <img alt="" class="img"
@@ -11,7 +12,7 @@
             </div>
             <span class="content">登录账号</span>
           </div>
-        </a>
+        </router-link>
       </div>
 
       <slide-menu></slide-menu>

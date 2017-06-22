@@ -23,6 +23,15 @@ var proxyTable = config.dev.proxyTable
 var app = express()
 var compiler = webpack(webpackConfig)
 
+/**
+ * mock数据
+ */
+// import apiRoutes from './mockRouter'
+const apiRoutes =  require('./mockRouter')
+
+app.use('/api', apiRoutes)
+/* mock数据结束*/
+
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
   quiet: true

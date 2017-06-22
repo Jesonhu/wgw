@@ -5,7 +5,18 @@
       <!-- 顶部导航 -->
       <v-header @handleBack="handleBack"></v-header>
 
-      {{this.newDetail}}
+      <div class="page-count">
+        <div class="page-hd">
+          <h2 class="title">{{newDetail.name}}</h2>
+          <p class="page-attr">
+            <span class="time">{{newDetail.pubTime}}</span>
+            <span class="look">阅读{{newDetail.lookCount}}</span>
+          </p>
+        </div>
+        <div class="bd">
+          {{newDetail.info}}
+        </div>
+      </div>
     </div>
   </transition>
 </template>
@@ -49,6 +60,25 @@
     }
     &.move-enter-active, &.move-leave-active{
       transition:all .2s linear;
+    }
+  }
+  .page-count{
+    padding:20px 14px 0 14px;
+    .title{
+      font-weight: 100;
+      font-size:20px;
+    }
+    .page-attr{
+      margin-top:10px;
+      font-size:12px;
+      .time,
+      .look{
+        font-size:12px;
+      }
+    }
+    .bd{
+      margin-top:25px;
+      font-size:12px;
     }
   }
 </style>

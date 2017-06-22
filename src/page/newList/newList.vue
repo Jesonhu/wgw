@@ -14,7 +14,7 @@
     </div>
 
     <!-- 文章列表 -->
-    <new-list></new-list>
+    <new-list :list="list"></new-list>
 
   </div>
 </template>
@@ -64,9 +64,15 @@
     mounted () {
       // this.wrapperHeight = document.documentElement.clientHeight - this.$refs.wrapper.getBoundingClientRect().top
       console.log(this.$route.params)
-      axios.get('./src/mock/list0.json')
+      const id = this.$route.params.id
+      axios.get(`/api/new/${id}`)
         .then((res) => {
-          console.log(res)
+          if (res.status === 200) {
+            const data = res.data
+            if (data.state === 1) {
+              this.list = data.data
+            }
+          }
         })
         .catch((err) => {
           console.log(err)
