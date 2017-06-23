@@ -1,6 +1,6 @@
 <template>
   <div class="top-header has-back">
-    <div class="back" @click="goBack()">
+    <div class="back" @click="goBack">
       <i class="fa fa-chevron-left"></i>
     </div>
     <div class="logo">

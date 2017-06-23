@@ -3,7 +3,8 @@
     <li class="item"
      v-for="item in list"
      @click="selectNew(item, $event)">
-      <a href="javascript:;" class="link">
+      <router-link
+       :to="{name: 'activeDetail', query: {id: item.id}}" class="link">
         <div class="img-wrap">
           <img class="img"
            :src="item.listPic"
@@ -21,7 +22,7 @@
             </span>
           </p>
         </div>
-      </a>
+      </router-link>
     </li>
 
     <!-- 文章详情 -->

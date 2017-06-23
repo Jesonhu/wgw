@@ -4,7 +4,7 @@
       <li class="item"
           v-for="(item,index) in 4">
         <router-link class="item-link"
-         :to="{ name: 'hasSearchList', params:{pid: 's'+index, id: index} }">
+         to="/active">
           <img class="img"
                src="https://pic.kuaizhan.com/g2/M00/3D/33/wKjmqlghQFiACKr1AAtfqD4TaAI0614275/imageView/v1/thumbnail/640x480"
                alt="学生活动">

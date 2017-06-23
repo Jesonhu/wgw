@@ -1,5 +1,6 @@
 <template>
-  <div class="top-header has-reg-login">
+  <div class="top-header has-reg-login"
+   :class="{'hasBg':hasBg}">
     <div class="back" @click="$router.go(-1)">
       <i class="fa fa-chevron-left"></i>
     </div>
@@ -17,7 +18,7 @@
 
 <script>
   export default {
-    props: ['titleName'],
+    props: ['titleName', 'hasBg'],
     data () {
       return {
         showSideBar: false
@@ -51,6 +52,9 @@
     padding-right:10px;
     line-height: $hei;
     background:$bg;
+    &.hasBg{
+      background:#c53c43;
+    }
     .back{
       color: #fff;
       font-size: 18px;

@@ -64,8 +64,8 @@
     mounted () {
       // this.wrapperHeight = document.documentElement.clientHeight - this.$refs.wrapper.getBoundingClientRect().top
       console.log(this.$route.params)
-      const id = this.$route.params.id
-      axios.get(`/api/new/${id}`)
+//      const id = this.$route.params.id
+      axios.get(`/api/active`)
         .then((res) => {
           if (res.status === 200) {
             const data = res.data
