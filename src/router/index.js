@@ -17,6 +17,11 @@ export default new Router({
       name: 'hasSearchList',
       component: newList
     },
+    // {
+    //   path: '/detail/:id',
+    //   name: 'hasSearchList',
+    //   component: newList
+    // },
     {
       path: '/join',
       component: registerLogin

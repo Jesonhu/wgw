@@ -4,7 +4,7 @@
       <i class="fa fa-chevron-left"></i>
     </div>
     <div class="site-name">
-      登录
+      {{titleName}}
     </div>
     <div class="cell cell-menu">
       <router-link class="link"
@@ -17,6 +17,7 @@
 
 <script>
   export default {
+    props: ['titleName'],
     data () {
       return {
         showSideBar: false
@@ -36,7 +37,7 @@
 </script>
 
 <style scoped lang="scss">
-  $hei: 45px;
+  $hei: 1.919rem;
   $bg: rgba(0,0,0,.1);
   .top-header{
     position: fixed;

@@ -3,8 +3,10 @@
     <v-header :titleName="titleStr"></v-header>
     <div class="hd-bg"></div>
 
-        <transition-group name="fade">
-          <div class="bd-wrap"  v-show="mark==1" :key="1">
+
+
+        <transition name="fade">
+          <div class="bd-wrap"  v-show="isLogin">
             <div class="main-con">
               <img class="img" src="https://pic.kuaizhan.com/g2/M00/3B/8C/CgpQVFghQmiAMxktAAA-nsQKn641375109" alt="">
           <div class="login-wrap">
@@ -16,16 +18,20 @@
             <button class="login-submit">登录</button>
             <div class="method">
               <a href="javascript:;" class="register"
-                 @click="toggleCon(2)">注册账号></a>
-              <a @click="toggleCon(3)" class="forget-pwd">忘记密码</a>
+                 @click="toggleCon(1)">注册账号></a>
+              <a href="javascript:;" class="forget-pwd">忘记密码</a>
             </div>
           </div>
+            </div>
           </div>
-        </div>
+        </transition>
 
-          <div class="bd-wrap"  v-show="mark==2" :key="2">
-          <div class="main-con">
-            <img class="img" src="https://pic.kuaizhan.com/g2/M00/3B/8C/CgpQVFghQmiAMxktAAA-nsQKn641375109" alt="">
+
+
+        <transition name="fade">
+          <div class="bd-wrap" v-show="!isLogin">
+            <div class="main-con">
+              <img class="img" src="https://pic.kuaizhan.com/g2/M00/3B/8C/CgpQVFghQmiAMxktAAA-nsQKn641375109" alt="">
           <div class="register-wrap">
             <mt-field label="手机号" placeholder="请输入11位手机号码" type="tel"></mt-field>
             <mt-field label="图片验证码">
@@ -38,33 +44,12 @@
             <button class="register-submit">注册</button>
             <div class="method">
               <a href="javascript:;" class="login"
-               @click="toggleCon(1)">返回登录</a>
+               @click="toggleCon(2)">返回登录</a>
             </div>
           </div>
             </div>
           </div>
-
-          <div class="bd-wrap"  v-show="mark==3" :key="3">
-            <div class="main-con">
-              <img class="img" src="https://pic.kuaizhan.com/g2/M00/3B/8C/CgpQVFghQmiAMxktAAA-nsQKn641375109" alt="">
-              <div class="forgetpwd-wrap">
-                <mt-field label="手机号" placeholder="请输入11位手机号码" type="tel"></mt-field>
-                <mt-field label="图片验证码">
-                  <img src="../../images/imgvcode.jpg" height="24" width="64">
-                </mt-field>
-                <mt-field label="短信验证码">
-                  <span style="height=24px;width=64px;">发送验证码</span>
-                </mt-field>
-                <mt-field label="密码设置" placeholder="请输入6~20位密码" type="password"></mt-field>
-                <button class="register-submit">确认</button>
-                <div class="method">
-                  <a href="javascript:;" class="login"
-                     @click="toggleCon(1)">返回登录</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </transition-group>
+        </transition>
   </div>
 </template>
 
@@ -75,21 +60,20 @@
   export default {
     data () {
       return {
-        mark: 1,
+        isLogin: false,
         titleStr: '注册'
       }
     },
     methods: {
       toggleCon (action) {
-//        const This = this
+        const This = this
         if (action === 1) {
           this.titleStr = '登录'
-        } else if (action === 2) {
-          this.titleStr = '注册'
+          This.isLogin = false
         } else {
-          this.titleStr = '忘记密码'
+          this.titleStr = '注册'
+          This.isLogin = true
         }
-        this.mark = action
       }
     },
     components: {
@@ -165,8 +149,7 @@
           }
         }
       }
-      .register-wrap,
-      .forgetpwd-wrap{
+      .register-wrap {
         $methodCol: #54c4fe;
 
         .register-submit{
@@ -199,24 +182,25 @@
     animation: rotateY-in .5s linear;
   }
   .fade-leave-active {
+    opacity: 0;
     /*animation: rotateY-in .5s linear;*/
   }
   @keyframes rotateY-in {
     0% {
       -webkit-transform: perspective(400px);
-      transform: perspective(400px);
-      opacity: 1
+      transform: perspective(400px)
     }
 
     30% {
       -webkit-transform: perspective(400px) rotateY(-15deg);
       transform: perspective(400px) rotateY(-15deg);
+      opacity: 0
     }
 
     to {
       -webkit-transform: perspective(400px) rotateY(90deg);
       transform: perspective(400px) rotateY(90deg);
-      opacity: 0
+      opacity: 1
     }
   }
   @keyframes rotateY-out {
