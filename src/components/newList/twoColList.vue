@@ -6,8 +6,8 @@
         <router-link class="item-link"
          to="/active">
           <img class="img"
-               src="https://pic.kuaizhan.com/g2/M00/3D/33/wKjmqlghQFiACKr1AAtfqD4TaAI0614275/imageView/v1/thumbnail/640x480"
-               alt="学生活动">
+               alt="学生活动"
+               v-lazy="`https://pic.kuaizhan.com/g2/M00/3D/33/wKjmqlghQFiACKr1AAtfqD4TaAI0614275/imageView/v1/thumbnail/640x480`">
           <p class="name">学生活动</p>
         </router-link>
       </li>
@@ -16,7 +16,18 @@
 </template>
 
 <script>
+  import { Lazyload } from 'mint-ui'
 
+  export default {
+    data () {
+      return {
+
+      }
+    },
+    components: {
+      Lazyload
+    }
+  }
 </script>
 
 <style scoped lang="scss">
@@ -64,5 +75,12 @@
         }
       }
     }
+  }
+
+  /* mint懒加载 */
+  image[lazy=loading] {
+    width: 40px;
+    height: 300px;
+    margin: auto;
   }
 </style>

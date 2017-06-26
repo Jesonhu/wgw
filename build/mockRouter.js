@@ -12,7 +12,7 @@ apiRoutes.get('/active', (req, res) => {
 // 获取新闻详情内容
 apiRoutes.get('/detail', (req, res) => {
   // console.log(req.query)
-  // console.log(req.query.id)
+  console.log(req.query.id)
   //res.send(newList0)
   const id = req.query.id - 1
   const data = newDetail.data[id]

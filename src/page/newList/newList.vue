@@ -16,6 +16,8 @@
     <!-- 文章列表 -->
     <new-list :list="list"></new-list>
 
+    <!-- 子路由内容要显示必须添加 -->
+    <router-view></router-view>
   </div>
 </template>
 

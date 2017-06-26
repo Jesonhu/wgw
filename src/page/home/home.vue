@@ -32,6 +32,7 @@
     import picGroup from 'components/newList/twoColList'
     import backTop from 'components/backToTop/space'
     import copyRight from 'components/copyRight/copyRight'
+
 //    import { Tabbar, TabItem } from 'mint-ui'
 
     export default {

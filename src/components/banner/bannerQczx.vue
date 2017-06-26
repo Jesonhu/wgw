@@ -10,7 +10,9 @@
         :key="item"
       >
         <a href="">
-            <img :src="item.image" alt="">
+            <img alt=""
+             :src="item.image"
+            >
         </a>
       </swiper-slide>
       <!-- 左右按钮 -->

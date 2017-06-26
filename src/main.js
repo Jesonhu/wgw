@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import './plugins/rem'
 import FastClick from 'fastclick'
+// import VueLazyload from 'vue-lazyload'
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
@@ -19,6 +20,13 @@ if ('addEventListener' in document) {
 
 Vue.use(MintUI)
 Vue.use(VueAwesomeSwiper)
+// 懒加载
+// Vue.use(VueLazyload, {
+//   preLoad: 1.3,
+//   error: './assets/loading_error.png',
+//   loading: './assets/loading.png',
+//   attempt: 1
+// })
 
 Vue.config.productionTip = false
 

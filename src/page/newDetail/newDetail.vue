@@ -61,7 +61,6 @@
 //            this.post = post
 //          }
 //        })
-//        console.log(this.$route.query.id)
         const id = this.$route.query.id
         axios.get(`/api/detail?id=${id}`)
           .then((res) => {
@@ -104,8 +103,8 @@
     }
   }
   .page-count{
-    margin-top: 2.1rem;
-    padding:20px 14px 0 14px;
+    margin-top: 0.9rem;
+    padding:0 14px 0 14px;
     .title{
       font-weight: 100;
       font-size:20px;

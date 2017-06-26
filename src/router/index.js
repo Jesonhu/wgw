@@ -2,8 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/page/home/home'
 import newList from '@/page/newList/newList'
-// import newDetail from '@/page/newDetail/newDetail'
+import newDetail from '@/page/newDetail/newDetail'
 import registerLogin from '@/page/registerLogin/registerLogin'
+import test from '@/page/newDetail/test'
 
 Vue.use(Router)
 
@@ -25,13 +26,21 @@ export default new Router({
         {
           path: 'detail',
           name: 'activeDetail',
-          component: Home
+          component: newDetail
+        },
+        {
+          path: 'test',
+          component: test
         }
       ]
     },
     {
       path: '/join',
       component: registerLogin
+    },
+    {
+      path: '/test',
+      component: test
     }
   ]
 })
