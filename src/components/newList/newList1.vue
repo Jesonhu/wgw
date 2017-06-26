@@ -1,8 +1,7 @@
 <template>
   <ul class="new-list1">
     <li class="item"
-     v-for="item in list"
-     @click="selectNew(item, $event)">
+     v-for="item in list">
       <router-link
        :to="{name: 'activeDetail', query: {id: item.id}}" class="link">
         <div class="img-wrap">
@@ -25,8 +24,9 @@
       </router-link>
     </li>
 
-    <!-- 文章详情 -->
+    <!-- 文章详情
     <newDetail @add="newDetail" :newDetail="selectedNew" ref="detail"></newDetail>
+    -->
   </ul>
 </template>
 
@@ -50,7 +50,7 @@
       }
     },
     mounted () {
-      console.log(this.list)
+//      console.log(this.list)
     },
     components: {
       newDetail

@@ -7,7 +7,7 @@
       </div>
       <p class="hd-txt">
         <span class="desc">
-          {{headerName[$route.params.id]}}
+          {{headerName[0]}}
         </span>
         <span class="count">36篇</span>
       </p>
@@ -63,7 +63,7 @@
     },
     mounted () {
       // this.wrapperHeight = document.documentElement.clientHeight - this.$refs.wrapper.getBoundingClientRect().top
-      console.log(this.$route.params)
+//      console.log(this.$route.params)
 //      const id = this.$route.params.id
       axios.get(`/api/active`)
         .then((res) => {

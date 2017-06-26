@@ -1,7 +1,10 @@
 <template>
   <div class="new-detail1" ref="newDetail">
       <!-- 顶部导航 -->
-      <v-header :titleName="titleName" :hasBg="true"></v-header>
+      详情页面
+      <v-header
+       :titleName="titleName"
+       :hasBg="true"></v-header>
       <div class="page-count" v-if="!loading">
         <div class="page-hd">
           <h2 class="title">{{newDetail.name}}</h2>
