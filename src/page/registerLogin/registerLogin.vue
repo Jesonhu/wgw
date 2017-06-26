@@ -13,7 +13,8 @@
             <mt-field label="验证码">
               <img src="../../images/imgvcode.jpg" height="24" width="64">
             </mt-field>
-            <button class="login-submit">登录</button>
+            <button class="login-submit"
+             @click.native="loginHandle">登录</button>
             <div class="method">
               <a href="javascript:;" class="register"
                  @click="toggleCon(2)">注册账号></a>
@@ -90,6 +91,12 @@
           this.titleStr = '忘记密码'
         }
         this.mark = action
+      },
+      // 点击登录后的处理
+      loginHandle () {
+//        openToast() {
+//          Toast('提示信息');
+//        },
       }
     },
     components: {
