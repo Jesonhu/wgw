@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/page/home/home'
+import LpShow from '@/page/lpPicList/picList1'
+import LpShowDetail from '@/page/lpPicList/children/detail'
 import newList from '@/page/newList/newList'
 import newDetail from '@/page/newDetail/newDetail'
 import registerLogin from '@/page/registerLogin/registerLogin'
-import test from '@/page/newDetail/test'
 
 Vue.use(Router)
 
@@ -15,9 +16,15 @@ export default new Router({
       component: Home
     },
     {
-      path: '/new/:id',
-      name: 'hasSearchList',
-      component: newList
+      path: '/lpshow',
+      component: LpShow,
+      children: [
+        {
+          path: 'detail',
+          name: 'fullPic',
+          component: LpShowDetail
+        }
+      ]
     },
     {
       path: '/active',
@@ -27,20 +34,12 @@ export default new Router({
           path: 'detail',
           name: 'activeDetail',
           component: newDetail
-        },
-        {
-          path: 'test',
-          component: test
         }
       ]
     },
     {
       path: '/join',
       component: registerLogin
-    },
-    {
-      path: '/test',
-      component: test
     }
   ]
 })

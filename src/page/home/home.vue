@@ -1,9 +1,11 @@
 <template>
     <div class="home">
+      
+      <bg></bg>
+
       <banner></banner>
 
       <v-menu></v-menu>
-      <child-menu></child-menu>
 
       <!-- fix菜单 -->
       <div class="nav-icon-more"
@@ -12,12 +14,6 @@
       </div>
       <side-bar :show="showSideBar" @parent="sideBarInit"></side-bar>
 
-      <!-- 列表 -->
-      <pic-group></pic-group>
-
-      <!-- 返回顶部 -->
-      <back-top></back-top>
-
       <!-- 版权 -->
       <copy-right></copy-right>
     </div>
@@ -25,12 +21,10 @@
 </template>
 
 <script>
+    import bg from 'components/full-bg/bg'
     import banner from 'components/banner/bannerQczx'
-    import menu from 'components/main-menu/menuIcon'
-    import childMenu from 'components/main-menu/childMenu'
+    import menu from 'components/main-menu/mobilMenu'
     import sideBar from 'components/sidebar/sidebar'
-    import picGroup from 'components/newList/twoColList'
-    import backTop from 'components/backToTop/space'
     import copyRight from 'components/copyRight/copyRight'
 
 //    import { Tabbar, TabItem } from 'mint-ui'
@@ -48,18 +42,21 @@
         }
       },
       components: {
+        bg,
         vMenu: menu,
         banner,
-        childMenu,
         sideBar,
-        picGroup,
-        backTop,
         copyRight
       }
     }
 </script>
 
 <style lang="scss">
+  .home {
+    &.bg{
+
+    }
+  }
   /* fix菜单 */
   .nav-icon-more{
     z-index: 1;

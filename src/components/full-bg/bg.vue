@@ -7,7 +7,8 @@
 
 <style scoped lang="scss">
   .bg{
-    background-image: url(../../images/index_bg.jpg);
+    // background-image: url(../../images/index_bg.jpg);
+    background-image:url(http://vcl-pictures.qiniucdn.com/FgXuhTVXQOTxJGyRM9tQ3FtUU0Bq);
   }
   .bg{
     z-index: -1;
