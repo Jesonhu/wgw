@@ -14,7 +14,7 @@
               <img src="../../images/imgvcode.jpg" height="24" width="64">
             </mt-field>
             <button class="login-submit"
-             @click.native="loginHandle">登录</button>
+             @click="loginHandle">登录</button>
             <div class="method">
               <a href="javascript:;" class="register"
                  @click="toggleCon(2)">注册账号></a>
@@ -71,7 +71,7 @@
 
 <script>
   import vHeader from 'components/header/header3'
-  import { Field } from 'mint-ui'
+  import { Field, Toast } from 'mint-ui'
 
   export default {
     data () {
@@ -94,9 +94,16 @@
       },
       // 点击登录后的处理
       loginHandle () {
-//        openToast() {
-//          Toast('提示信息');
-//        },
+        this.toastFn('你好')
+      },
+      toastFn (message, position, duration, className, iconClass) {
+        Toast({
+          message: message || '提示消息',
+          position: position || 'top',
+          duration: duration || 700,
+          className: className || '',
+          iconClass: iconClass || ''
+        })
       }
     },
     components: {
@@ -106,7 +113,7 @@
   }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
   $themCol: #c53c43;
   .hd-bg{
     background-image: url(https://passport.kuaizhan.com/images/transparent-bg.png);
@@ -275,4 +282,26 @@
     -webkit-animation-name: flipOutY;
     animation-name: flipOutY
   }
+
+  /* toast样式自定义 */
+  .mint-toast{
+  }
+  .mint-toast.is-placetop {
+    /*animation: topToMiddle .3 linear;*/
+    top:6.25rem;
+    min-width:9rem;
+    color:#fff;
+    .mint-toast-text {
+      color:#fff;
+    }
+  }
+  @keyframes topToMiddle {
+    40% {
+      top: 0;
+    }
+    100% {
+      top:6.25rem;
+    }
+  }
+
 </style>
