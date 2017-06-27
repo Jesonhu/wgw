@@ -24,7 +24,7 @@ var app = express()
 var compiler = webpack(webpackConfig)
 
 /**
- * mock数据
+ * mock数据 api
  */
 // import apiRoutes from './mockRouter'
 const apiRoutes =  require('./mockRouter')

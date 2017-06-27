@@ -18,15 +18,15 @@
 </template>
 
 <script>
-    
+
 </script>
 
 <style lang="scss" scoped>
   .hd{
-    $wrapHei: 6.5rem;  
+    $wrapHei: 6.5rem;
     $itemHei: 30px;
     $textColor: rgba(80,77,77,.6);
-    
+
     position: relative;
     // width:100%;
     height:$wrapHei;
@@ -34,6 +34,7 @@
     margin-bottom:0;
     .img-wrap{
     //   height: $wrapHei - 10px;
+      height:100%;
       background-color:#000;
       .img{
         display:block;

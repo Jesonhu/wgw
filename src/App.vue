@@ -17,6 +17,9 @@
 </script>
 
 <style lang="scss">
-  @import 'style/common'
-
+  @import 'style/common';
+  .app {
+    position: relative;
+    height: 100%;
+  }
 </style>
