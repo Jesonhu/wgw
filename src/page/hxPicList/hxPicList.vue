@@ -10,7 +10,8 @@
           <h3 class="title">{{item.title}}</h3>
           <ul class="house-list">
             <li class="house-item"
-             v-for="(house,index) in item.houseList">
+             v-for="(house,index) in item.houseList"
+             @click="toggle(house)">
                 <p class="name">
                   <strong class="type">{{house.name}}</strong>
                   <span class="text">{{house.subname}}</span>
@@ -20,7 +21,8 @@
                   <span class="img"></span>
                   <span class="text">户型图</span>
                 </a>
-                <span class="arrow" @click="toggle(house)"></span>
+                <span class="arrow"
+                 :class="{'is-active':house.mark}"></span>
             </li>
           </ul>
         </li>
@@ -133,7 +135,7 @@
           border-bottom:1px solid #e2e1e0;
           position: relative;
           display:block;
-          padding-bottom:10px;
+          padding-bottom:0;
           /*height:62px;*/
           font-size: 13px;
           .name{
@@ -144,6 +146,7 @@
               color:#252e32;
             }
             .text {
+              marin-left:10px;
               color:#74a3a5;
             }
           }
@@ -151,12 +154,13 @@
             z-index: 2;
             position: relative;
             padding:10px;
-            padding-bottom:0;
+            padding-bottom:11px;
           }
           &:last-child{
             border-bottom:0;
           }
           .arrow{
+            z-index: 999;
             content:"";
             position: absolute;
             top:10px;
@@ -168,10 +172,12 @@
             border:20px solid #fff;
             background:url(http://m.vcooline.com/stylesheets/app/imgs/sprite.png) no-repeat -100px 0 / 160px auto;
             cursor: pointer;
+            transition:.3s roate linear;
+            &.is-active{
+               transform:rotate(180deg);
+            }
           }
           .link{
-            z-index: 99;
-            position: relative;
             display:flex;
             align-items: center;
             justify-content: center;
@@ -189,11 +195,10 @@
               border: 1px solid #e2e1e0;
               border-right:0;
               border-bottom: 0;
-              /*background:rgb(242,241,240);*/
-              background:red;
+              background:rgb(242,241,240);
               left: 50%;
               margin-left: -10px;
-              top: -0px;
+              top: 70px;
               transform: rotate(45deg);
             }
             .img{
@@ -201,6 +206,7 @@
               display:inline-block;
               width:22px;
               height:18px;
+              margin-right:10px;
               background:url(http://m.vcooline.com/stylesheets/app/imgs/sprite.png) no-repeat 0 -25px/160px auto;
             }
           }
