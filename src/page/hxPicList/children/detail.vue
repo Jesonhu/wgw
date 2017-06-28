@@ -1,19 +1,23 @@
 <template>
   <!--swiper全屏-->
-  <div style="display: relative;width:100%;height:100%;padding-top:1.919rem">
+  <div style="display: relative;width:100%;height:100vh;padding-top:1.919rem">
     <!-- 顶部导航 -->
   <v-header :hasBg="true"></v-header>
   <swiper :options="swiperOption" class="swiper-box">
     <swiper-slide class="swiper-item"
-     v-for="item in picList"
+     v-for="(item,index) in picList"
      :key="item">
       <a href="" class="link">
         <img alt="" class="img"
          :src="item.pic">
       </a>
+      <div class="item-con">
+        <p>CS-001    一室一厅一卫,{{index+1}}</p>
+        <p>企业高管公寓    约43.64平米</p>
+      </div>
     </swiper-slide>
     <!-- 指示按钮 -->
-    <div class="swiper-pagination" slot="pagination"></div>
+    <div class="swiper-pagination vertical" slot="pagination"></div>
   </swiper>
   </div>
 </template>
@@ -27,12 +31,17 @@
       return {
         swiperOption: {
           pagination: '.swiper-pagination',
-          direction: 'vertical',
-          slidesPerView: 1,
-          paginationClickable: true,
-          spaceBetween: 0, // slides间产生间隔
-          mousewheelControl: true,
-          paginationType: 'fraction' // xx/count 导航
+          effect: 'coverflow',
+          grabCursor: true,
+          centeredSlides: true,
+          slidesPerView: 'auto',
+          coverflow: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true
+          }
         },
         picList: []
       }
@@ -67,7 +76,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   html,body {
     position: relative;
     height: 100%;
@@ -79,6 +88,16 @@
     width: 100%;
     height: 100%;
     margin: 0 auto;
+    .vertical{
+      bottom:50px;
+      text-align: right;
+      & > * {
+        border-radius: 0;
+      }
+      .swiper-pagination-bullet-active{
+        background:red;
+      }
+    }
   }
   .swiper-item {
     height: 100%;
@@ -109,5 +128,26 @@
         height:100%;
       }
     }
+
+    /* 文字内容 */
+    .item-con{
+      position: absolute;
+      bottom:0;
+      left:0;
+      width:100%;
+      height:50px;
+      background:rgba(0,0,0,.5);
+      color:#fff;
+      & > * {
+        color:#fff;
+        text-align: left;
+        font-size:14px;
+        text-indent: 20px;
+        line-height: 24px;
+      }
+    }
+
+    /* 导航 */
   }
+
 </style>

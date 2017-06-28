@@ -60,6 +60,16 @@
               link: '/about',
               pic: 'http://vcl-pictures.qiniucdn.com/Fs413Dv8vrkdvFte7Or6W8kz_emZ',
               name: '公司简介'
+            },
+            {
+              link: '/active',
+              pic: 'http://vcl-pictures.qiniucdn.com/FsxoJfdoFGn05jBXdnpfRBn_3Eni',
+              name: '最新资讯'
+            },
+            {
+              link: '/order',
+              pic: 'http://vcl-pictures.qiniucdn.com/FlA2wYHJxzRKxF8pc_uliWOR9niL',
+              name: '预约看房'
             }
           ]
         }
@@ -87,7 +97,7 @@
            }
            &:nth-child(6n+6) {
                background:#ffce55;
-           }  
+           }
         }
         .link {
             display:flex;

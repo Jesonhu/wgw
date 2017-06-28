@@ -59,7 +59,7 @@
     }
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
   /* 青春在线 */
   .c-banner-swiper{
     height:170.29px;

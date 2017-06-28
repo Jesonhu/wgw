@@ -1,26 +1,29 @@
 <template>
   <div class="hxpic-list">
+    <v-header></v-header>
+
     <div class="header">
       <img src="http://vcl-pictures.qiniucdn.com/FuQF9yMlATjxAaqcOXhYnkVLHlXv" alt="" class="img">
     </div>
     <div class="bd">
       <ul class="list">
         <li class="item"
-         v-for="item in listData">
+         v-for="(item,itemIndex) in listData">
           <h3 class="title">{{item.title}}</h3>
           <ul class="house-list">
             <li class="house-item"
-             v-for="(house,index) in item.houseList"
+             v-for="(house,houseIndex) in item.houseList"
              @click="toggle(house)">
                 <p class="name">
                   <strong class="type">{{house.name}}</strong>
                   <span class="text">{{house.subname}}</span>
                 </p>
                 <p class="desc">{{house.desc}}</p>
-                <a href="" class="link" ref="sub-menu" v-show="house.mark || false">
+                <router-link  class="link" ref="sub-menu" v-show="house.mark || false"
+                 :to="{name: 'hxDetail', query: {id: itemIndex, pid: houseIndex}}">
                   <span class="img"></span>
                   <span class="text">户型图</span>
-                </a>
+                </router-link>
                 <span class="arrow"
                  :class="{'is-active':house.mark}"></span>
             </li>
@@ -33,6 +36,7 @@
 
 <script>
   import Vue from 'vue'
+  import vHeader from 'components/header/header1'
 
   export default {
     data () {
@@ -90,6 +94,9 @@
           item.mark = !item.mark
         }
       }
+    },
+    components: {
+      vHeader
     }
   }
 </script>

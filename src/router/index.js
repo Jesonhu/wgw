@@ -6,18 +6,21 @@ import LpShowDetail from '@/page/lpPicList/children/detail'
 import NewList from '@/page/newList/newList'
 import NewDetail from '@/page/newDetail/newDetail'
 import HxType from '@/page/hxPicList/hxPicList'
+import HxDetail from '@/page/hxPicList/children/detail'
 import Map from '@/page/map/map'
+import About from '@/page/about/singlePage'
 import RegisterLogin from '@/page/registerLogin/registerLogin'
+import Order from '@/page/order/order'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    {
+    { // 首页
       path: '/',
       component: Home
     },
-    {
+    { // 楼盘鉴赏列表页
       path: '/lpshow',
       component: LpShow,
       children: [
@@ -28,15 +31,15 @@ export default new Router({
         // }
       ]
     },
-    {
+    { // 楼盘鉴赏详情页
       path: '/lpshow/detail',
       name: 'fullPic',
       component: LpShowDetail
     },
-    {
+    { // 新闻资讯列表页
       path: '/active',
       component: NewList,
-      children: [
+      children: [ // 新闻资讯详情页
         {
           path: 'detail',
           name: 'activeDetail',
@@ -44,20 +47,30 @@ export default new Router({
         }
       ]
     },
-    {
+    { // 户型图鉴赏列表
       path: '/hxtype',
       component: HxType
     },
-    {
-      path: '/hxstype/detail'
+    { // 户型图鉴赏详情
+      path: '/hxstype/detail',
+      name: 'hxDetail',
+      component: HxDetail
     },
-    {
+    { // 项目地图页
       path: '/map',
       component: Map
     },
-    {
+    { // 公司简介页
+      path: '/about',
+      component: About
+    },
+    { // 登录注册页
       path: '/join',
       component: RegisterLogin
+    },
+    {
+      path: '/order',
+      component: Order
     }
   ]
 })

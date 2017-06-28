@@ -63,7 +63,7 @@
     $hei: 115px;
     $bg: #f1f1f1;
 
-    margin-bottom:30px;
+    margin-bottom:0;
     padding: 5px 10px 10px;
     .item{
       margin-top:8px;

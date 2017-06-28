@@ -41,6 +41,7 @@
   $hei: 1.919rem;
   $bg: rgba(0,0,0,.1);
   .top-header{
+    z-index: 9;
     position: fixed;
     top:0;
     left:0;

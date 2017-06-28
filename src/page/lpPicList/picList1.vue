@@ -1,5 +1,7 @@
 <template>
     <div class="pic-list-wrap">
+        <v-header></v-header>
+
         <banner></banner>
 
         <ul class="list">
@@ -25,6 +27,7 @@
 </template>
 
 <script>
+    import vHeader from 'components/header/header1'
     import banner from 'components/banner/staticBanner1'
 
     export default {
@@ -33,6 +36,7 @@
         }
       },
       components: {
+        vHeader,
         banner
       }
     }
@@ -62,7 +66,7 @@
                 .img{
                    display:block;
                    width:100%;
-                   height:100%;     
+                   height:100%;
                 }
             }
             .con-bd{

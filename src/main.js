@@ -10,7 +10,13 @@ import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
+import './style/diy_swiper.scss'
+import './style/mint_ui.scss'
 import 'font-awesome/css/font-awesome.min.css'
+import MuseUI from 'muse-ui'
+import 'muse-ui/dist/muse-ui.css'
+import 'muse-ui/dist/theme-teal.min.css' // 使用 carbon 主题
+import './style/muse.scss'
 
 if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', function () {
@@ -18,6 +24,7 @@ if ('addEventListener' in document) {
   })
 }
 
+Vue.use(MuseUI)
 Vue.use(MintUI)
 Vue.use(VueAwesomeSwiper)
 // 懒加载
