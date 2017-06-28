@@ -25,15 +25,22 @@
          labelFloat
          v-model="order.tel"/>
         <mu-date-picker
-         name="time"
+         name="date"
          icon="phone"
          label="预约时间"
-         hintText="请选择预约时间"
+         hintText="请选择预约年月日"
          v-model="order.selectDate"
          minDate="2017-06-28"
          format="YYYY-MM-DD"
          errorText="这是必填项"
-         errorColor="green"/> <br/>
+         errorColor="green"/>
+        <mu-time-picker
+         hintText="24小时制"
+         v-model="order.time"
+         format="24hr"
+         errorText="这是必填项"
+         errorColor="green"/><br/>
+        <br/>
         <div>随行人数</div>
         <mu-text-field
          name="desc"
@@ -61,6 +68,7 @@
           name: '',
           tel: '',
           selectDate: '',
+          time: '',
           desc: ''
         }
       }
