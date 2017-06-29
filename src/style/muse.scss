@@ -1,7 +1,31 @@
-.mu-text-field,
-.mu-date-picker{
+$museTthemColor: #009688;
+.mu-text-field{
   width:95%;
 }
 .mu-text-field.multi-line{
   width:91%;
+}
+.mu-date-picker{
+  width:50%;
+  .mu-text-field-icon{
+    width:25px;
+    overflow: hidden;
+  }
+}
+.mu-time-picker{
+  width:46%;
+}
+.mu-text-field-label{
+  font-size: 18px;
+  color: $museTthemColor;
+}
+.mu-text-field-icon.mu-icon{
+  color:$museTthemColor;
+}
+.text-area{
+  background:$museTthemColor;
+  height:2px;
+}
+.mu-text-field-focus-line.error{
+  background:$museTthemColor;
 }
