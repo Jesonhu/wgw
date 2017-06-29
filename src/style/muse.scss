@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+$museTthemColor: #009688;
+>>>>>>> 56ce2910d9678665b8803657905a775cc08be5bc
 .mu-text-field{
   width:95%;
 }
@@ -5,8 +9,33 @@
   width:91%;
 }
 .mu-date-picker{
+<<<<<<< HEAD
   width:55%;
 }
 .mu-time-picker{
   width:41%;
+=======
+  width:50%;
+  .mu-text-field-icon{
+    width:25px;
+    overflow: hidden;
+  }
+}
+.mu-time-picker{
+  width:46%;
+}
+.mu-text-field-label{
+  font-size: 18px;
+  color: $museTthemColor;
+}
+.mu-text-field-icon.mu-icon{
+  color:$museTthemColor;
+}
+.text-area{
+  background:$museTthemColor;
+  height:2px;
+}
+.mu-text-field-focus-line.error{
+  background:$museTthemColor;
+>>>>>>> 56ce2910d9678665b8803657905a775cc08be5bc
 }

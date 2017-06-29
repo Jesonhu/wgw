@@ -10,7 +10,7 @@ import HxDetail from '@/page/hxPicList/children/detail'
 import Map from '@/page/map/map'
 import About from '@/page/about/singlePage'
 import RegisterLogin from '@/page/registerLogin/registerLogin'
-import Order from '@/page/order/order'
+import Order from '@/page/order/order_mint'
 
 Vue.use(Router)
 
