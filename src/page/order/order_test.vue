@@ -5,6 +5,19 @@
     <!-- 预约看房 -->
     <div class="order-bd">
       <form @submit.prevent="submit">
+        <div>
+          <div class="form-group" v-bind:class="{ 'form-group--error': $v.form.name.$error }">
+            <label class="form__label">嵌套的 A</label>
+            <input class="form__input" v-model.trim="form.nestedA" @input="$v.form.name.$touch()">
+          </div><span class="form-group__message" v-if="!$v.form.name.required">不能为空</span>
+          <div class="form-group" v-bind:class="{ 'form-group--error': $v.form.tel.$error }">
+            <label class="form__label">嵌套的 B</label>
+            <input class="form__input" v-model.trim="form.nestedB" @input="$v.form.tel.$touch()">
+          </div><span class="form-group__message" v-if="!$v.form.tel.required">不能为空</span>
+          <div class="form-group" v-bind:class="{ 'form-group--error': $v.form.$error }"></div>
+          <span class="form-group__message" v-if="$v.form.$error">嵌套总结果符合要求</span>
+          <pre>form: {{ $v.form }}</pre>
+        </div>
         <div class="from-group">
           <label for="name" class="mod-form-label">姓名</label>
           <div class="input-wrap has-icon">
@@ -37,32 +50,25 @@
     </div>
 
     <!-- 表单验证 -->
-    <div>
-      <div class="form-group" v-bind:class="{ 'form-group--error': $v.name.$error }">
-        <label class="form__label">用户名</label>
-        <input class="form__input" v-model.trim="name" @input="$v.name.$touch()">
-      </div><span class="form-group__message" v-if="!$v.name.required">表单必填</span><span class="form-group__message" v-if="!$v.name.minLength">Name must have at least {{$v.name.$params.minLength.min}} letters.</span>
-      <pre>name: {{ $v.name }}</pre>
-      <div class="form-group" v-bind:class="{ 'form-group--error': $v.age.$error }">
-        <label class="form__label">年龄</label>
-        <input class="form__input" v-model.trim="age" @blur="$v.age.$touch()">
-      </div><span class="form-group__message" v-if="!$v.age.between">Must be between {{$v.age.$params.between.min}} and {{$v.age.$params.between.max}}</span>
-      <pre>age: {{ $v.age }}</pre>
-    </div>
   </div>
 </template>
 
 <script>
   import vHeader from 'components/header/header3'
+  import { required, minLength, between } from 'vuelidate/lib/validators'
 
   export default {
     data () {
       return {
-        order: {
+        form: {
           name: '',
           tel: '',
           count: '',
-          desc: ''
+          desc: '',
+          form: { // 嵌套
+            name: '',
+            tel: ''
+          }
         },
         name: '',
         age: 0
@@ -74,13 +80,18 @@
       }
     },
     validations: {
-      name: {
-        required,
-        minLength: minLength(4)
-      },
-      age: {
-        between: between(20, 30)
+      // 验证
+      form: {
+        name: {
+          required,
+          minLength: minLength(4)
+        },
+        tel: {
+          required,
+          between: between(1, 6)
+        }
       }
+
     },
     components: {
       vHeader

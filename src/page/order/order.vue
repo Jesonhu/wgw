@@ -6,89 +6,70 @@
       <form @submit.prevent="submit">
         <!-- 姓名 -->
         <mu-text-field
-         icon="person"
-         name="user"
-         label="姓名"
-         hintText="请输入您的姓名"
-         :errorText="userErrorText || '这是必填项'"
-         :errorColor="errorColor"
-         type="text"
-         labelFloat
-         v-model="order.name"
-         @keydown="inputHandle"
-         @focus="focusHandle"
-         @blur="blurHandle"/>
+          icon="person"
+          name="user"
+          label="姓名"
+          hintText="请输入您的姓名"
+          :errorText="userErrorText || '这是必填项'"
+          :errorColor="errorColor"
+          type="text"
+          labelFloat
+          v-model="order.name"
+          @keydown="inputHandle"
+          @focus="focusHandle"
+          @blur="blurHandle"/>
         <!-- 手机号 -->
         <mu-text-field
-         icon="phone"
-         label="手机号"
-         name="tel"
-         hintText="请输入手机号"
-         type="text"
-         :errorColor="errorColor"
-         :errorText="telErrorText || '这是必填项'"
-         labelFloat
-         v-model="order.tel"/>
+          icon="phone"
+          label="手机号"
+          name="tel"
+          hintText="请输入手机号"
+          type="text"
+          :errorColor="errorColor"
+          :errorText="telErrorText || '这是必填项'"
+          labelFloat
+          v-model="order.tel"/>
         <!-- 预约时间 -->
         <mu-date-picker
-<<<<<<< HEAD
-         name="date"
-         icon="phone"
-         label="预约时间"
-         hintText="请选择预约年月日"
-=======
-         name="time"
-         icon="event-note"
-         label="预约时间"
-         hintText="请选择年月日"
->>>>>>> 56ce2910d9678665b8803657905a775cc08be5bc
-         v-model="order.selectDate"
-         format="YYYY-MM-DD"
-         errorText="请选择年月日"
-         errorColor="errorColor"/>
+          name="time"
+          icon="event-note"
+          label="预约时间"
+          hintText="请选择年月日"
+          v-model="order.selectDate"
+          format="YYYY-MM-DD"
+          errorText="请选择年月日"
+          errorColor="errorColor"/>
         <mu-time-picker
-         hintText="请选择时分"
-         format="24hr"
-         icon="alarm"
-         iconColor="errorColor"
-         errorText="这是必填项"
-<<<<<<< HEAD
-         errorColor="green"/>
-        <mu-time-picker
-         hintText="24小时制"
-         v-model="order.time"
-         format="24hr"
-         errorText="这是必填项"
-         errorColor="green"/><br/>
-        <br/>
-        <div>随行人数</div>
-=======
-         errorColor="errorColor"
-         v-model="order.selectTime"/><br/>
+          hintText="请选择时分"
+          format="24hr"
+          icon="alarm"
+          iconColor="errorColor"
+          errorText="这是必填项"
+          errorColor="errorColor"
+          v-model="order.selectTime"/><br/>
         <!-- 预约人数 -->
         <mu-text-field
-         icon="people"
-         label="预约人数"
-         name="count"
-         hintText="请输入预约人数"
-         type="text"
-         errorText="这是必填项"
-         labelFloat
-         :errorColor="errorColor"
-         :errorText="countErrorText || '最少一个人'"
-         v-model="order.count"/><br/>
+          icon="people"
+          label="预约人数"
+          name="count"
+          hintText="请输入预约人数"
+          type="text"
+          errorText="这是必填项"
+          labelFloat
+          :errorColor="errorColor"
+          :errorText="countErrorText || '最少一个人'"
+          v-model="order.count"/><br/>
         <!-- 备注 -->
->>>>>>> 56ce2910d9678665b8803657905a775cc08be5bc
         <mu-text-field
-         name="desc"
-         icon="sms"
-         label="备注"
-         hintText="有什么特别想告诉我们的，请在这里填写"
-         multiLine
-         :rows="3" :rowsMax="6"
-         :errorColor="errorColor"
-         underlineClass="text-area"
-         v-model="order.desc"/><br/>
+          name="desc"
+          icon="sms"
+          label="备注"
+          hintText="有什么特别想告诉我们的，请在这里填写"
+          multiLine
+          :rows="3" :rowsMax="6"
+          :errorColor="errorColor"
+          underlineClass="text-area"
+          v-model="order.desc"/><br/>
         <div class="submit-wrap">
           <input type="submit" value="提交">
         </div>
@@ -101,7 +82,6 @@
 <script>
   import vHeader from 'components/header/header3'
   import { Toast } from 'mint-ui'
-
   export default{
     data () {
       return {
@@ -117,12 +97,8 @@
           name: '',
           tel: '',
           selectDate: '',
-<<<<<<< HEAD
-          time: '',
-=======
           selectTime: '',
           count: '',
->>>>>>> 56ce2910d9678665b8803657905a775cc08be5bc
           desc: ''
         }
       }
@@ -214,9 +190,9 @@
     width:100%;
     min-height: 100vh;
     background:#F1F1EF;
-    .submit-wrap{
-      margin: 10px;
-      & > * ,
+  .submit-wrap{
+    margin: 10px;
+  & > * ,
       .input[type=submit] {
         dipslya:block;
         width:100%;
@@ -228,6 +204,6 @@
         border-radius:5px;
         background:$museTthemColor;
       }
-    }
+  }
   }
 </style>

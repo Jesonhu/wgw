@@ -1,10 +1,20 @@
 <template>
   <div>
     <div class="form-group" v-bind:class="{ 'form-group--error': $v.name.$error }">
-      <label class="form__label">用户名</label>
-      <input class="form__input" v-model.trim="name" @input="$v.name.$touch()">
+      <label class="form__label">姓名</label>
+      <div class="input-wrap">
+      <input class="form__input" placeholder="请输入姓名" v-model.trim="name" @input="$v.name.$touch()">
+      <i class="input-icon-validate mintui mintui-field-error icon-empty" v-if="$v.name.required"
+       @click="name = '' "></i>
+      <i class="input-icon-validate icon-status mintui"
+       :class="[!$v.name.$invalid ? 'mintui-field-success' : '']"></i>
+      <i class="input-icon-validate icon-required mintui mintui-field-warning" v-show="!$v.name.required"></i>
+      </div>
     </div><span class="form-group__message" v-if="!$v.name.required">表单必填</span><span class="form-group__message" v-if="!$v.name.minLength">至少 {{$v.name.$params.minLength.min}} 个字符</span>
+
     <pre>name: {{ $v.name }}</pre>
+
+
     <div class="form-group" v-bind:class="{ 'form-group--error': $v.age.$error }">
       <label class="form__label">年龄</label>
       <input class="form__input" v-model.trim="age" @blur="$v.age.$touch()">
@@ -52,8 +62,8 @@
         password: '', // 是否一样
         repeatPassword: '',
         form: { // 嵌套
-          nestedA: '',
-          nestedB: ''
+          name: '',
+          tel: ''
         }
       }
     },
@@ -84,6 +94,8 @@
         }
       }
 
+    },
+    computed: {
     }
   }
 </script>
@@ -92,6 +104,66 @@
   .form-group{
     input {
       border:1px solid red;
+    }
+  }
+
+  /**/
+  .input-wrap{
+    position: relative;
+    margin:10px;
+    display:block;
+    .form__input{
+      display: inline-block;
+      width: 100%;
+      height: 32px;
+      line-height: 1.5;
+      padding: 4px 7px;
+      font-size: 12px;
+      border: 1px solid #dddee1;
+      border-radius: 4px;
+      color: #495060;
+      background-color: #fff;
+      background-image: none;
+      position: relative;
+      cursor: text;
+      transition: border .2s cubic-bezier(0.45, 0.05, 0.55, 0.95),
+                  background .2s cubic-bezier(0.45, 0.05, 0.55, 0.95),
+                  box-shadow .2s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+      &:hover,
+      &:focus {
+         border-color: #57a3f3;
+      }
+      &:focus{
+         outline: 0;
+         box-shadow: 0 0 0 2px rgba(45,140,240,.2);
+       }
+    }
+    .input-icon-validate{
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top:0;
+      right:30px;
+      width:30px;
+      height:100%;
+      background:transparent;
+      &.icon-status{
+        right:0px;
+      }
+      &.mintui-field-error{
+        color:red;
+      }
+      &.mintui-field-warning{
+         color:red;
+      }
+      &.mintui-field-success{
+         color:green;
+       }
+      &.icon-empty{
+         color:#888;
+         opacity:.5;
+      }
     }
   }
 </style>
