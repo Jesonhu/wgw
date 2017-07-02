@@ -44,19 +44,22 @@
       <div class="form-group inline-group">
         <label for="date" class="label-block">预约时间</label>
 
-        <div class="pickers-wrap">
+        <div class="input-wrap pickers-wrap">
           <div class="input-wrap">
-            <mu-date-picker
-             inputClass="has-border"
-             hintText="请选择年月日"
-             v-model="form.date"
-            />
-          </div>
-          <div class="input-wrap">
-            <mu-time-picker
-             inputClass="has-border"
-             hintText="请选择时分"
-             v-model="form.time"/>
+            <input class="form__input" placeholder="请输入预约时间" type="text"
+             v-model="form.dateTime"
+             @click="open('picker')">
+          <mt-datetime-picker
+            ref="picker"
+            type="datetime"
+            year-format="{value} 年"
+            month-format="{value} 月"
+            date-format="{value} 日"
+            hour-format="{value} :"
+            minute-format="{value}"
+            :startDate="new Date()"
+            @confirm="handleChange">
+          </mt-datetime-picker>
           </div>
         </div>
       </div>
@@ -104,6 +107,7 @@
   import { required } from 'vuelidate/lib/validators'
   import { Toast } from 'mint-ui'
   import { isPhone, isUserName } from '../../plugins/form'
+  import { formatDate } from '../../plugins/date'
   import vSwitch from 'components/switch/switch'
 
   export default {
@@ -111,12 +115,28 @@
       return {
         canSubmitMark: false,
         descToggleMark: false,
-        toastMesg: ['姓名不正确', '手机号不正确', '年月日必选', '时分必选', '请输入留言信息'],
+        toastMesg: [
+          {
+            key: 'name',
+            text: '姓名不正确'
+          },
+          {
+            key: 'tel',
+            text: '手机号不正确'
+          },
+          {
+            key: 'dateTime',
+            text: '预约时间必选'
+          },
+          {
+            key: 'desc',
+            text: '请输入留言信息'
+          }
+        ],
         form: {
           name: '',
           tel: '',
-          date: '',
-          time: '',
+          dateTime: '',
           count: 1,
           desc: ''
         }
@@ -134,8 +154,8 @@
         let showErrorMsg
         requireArr.push(form.name)
         requireArr.push(form.tel)
-        requireArr.push(form.date)
-        requireArr.push(form.time)
+        requireArr.push(form.dateTime)
+
         if (this.descToggleMark) {
           requireArr.push(form.desc)
         }
@@ -144,7 +164,7 @@
           this.canSubmitMark = false // 控制是否submit()可以提交
           for (let i = 0; i < requireArr.length; i++) { // 获取具体哪个验证有问题
             if (requireArr[i]['$invalid']) {
-              showErrorMsg = this.toastMesg[i]
+              showErrorMsg = this.toastMesg[i]['text']
               break
             }
           }
@@ -172,7 +192,7 @@
       },
       handleBlur (isError, _index) { // 处理失去光标
         if (isError) {
-          this.handelToast(this.toastMesg[_index])
+          this.handelToast(this.toastMesg[_index]['text'])
         }
       },
       handelToast (msg) {
@@ -181,6 +201,18 @@
           position: 'middle',
           duration: 1000
         })
+      },
+
+      // mint picker
+      open (picker) {
+        this.$refs[picker].open()
+      },
+      handleChange (value) {
+        const result = formatDate(value, 'yyyy-MM-dd hh:mm')
+        this.form.dateTime = result
+      },
+      dateTimeTouch (val) {
+        console.log(val)
       }
     },
     validations () {
@@ -193,10 +225,7 @@
             tel: {
               telValid: isPhone
             },
-            date: {
-              required
-            },
-            time: {
+            dateTime: {
               required
             }
           }
@@ -210,10 +239,7 @@
             tel: {
               telValid: isPhone
             },
-            date: {
-              required
-            },
-            time: {
+            dateTime: {
               required
             },
             desc: {

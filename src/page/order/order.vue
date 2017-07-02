@@ -114,7 +114,28 @@
       return {
         canSubmitMark: false,
         descToggleMark: false,
-        toastMesg: ['姓名不正确', '手机号不正确', '年月日必选', '时分必选', '请输入留言信息'],
+        toastMesg: [
+          {
+            key: 'name',
+            text: '姓名不正确'
+          },
+          {
+            key: 'tel',
+            text: '手机号不正确'
+          },
+          {
+            key: 'date',
+            text: '年月日必选'
+          },
+          {
+            key: 'time',
+            text: '时分必选'
+          },
+          {
+            key: 'desc',
+            text: '请输入留言信息'
+          }
+        ],
         form: {
           name: '',
           tel: '',
@@ -133,6 +154,9 @@
         }
       },
       submitClickHandle (form) {
+        /**
+         * 点击提交时，依次按手动添加到requireArr数组中的顺序检测
+         */
         let requireArr = []
         let showErrorMsg
         requireArr.push(form.name)
@@ -147,7 +171,7 @@
           this.canSubmitMark = false // 控制是否submit()可以提交
           for (let i = 0; i < requireArr.length; i++) { // 获取具体哪个验证有问题
             if (requireArr[i]['$invalid']) {
-              showErrorMsg = this.toastMesg[i]
+              showErrorMsg = this.toastMesg[i]['text']
               break
             }
           }
@@ -155,6 +179,13 @@
         } else { // 全部验证通过
 //          console.log('表单验证通过')
           this.canSubmitMark = true
+        }
+      },
+      resultNoticeSerialize (invaliteKey) {
+        let requireArr = []
+        const length = this.toastMesg.length - 1
+        for (let i = 0; i < length; i++) {
+          requireArr.push()
         }
       },
       changeCount (status) {
@@ -175,7 +206,7 @@
       },
       handleBlur (isError, _index) { // 处理失去光标
         if (isError) {
-          this.handelToast(this.toastMesg[_index])
+          this.handelToast(this.toastMesg[_index]['text'])
         }
       },
       handelToast (msg) {

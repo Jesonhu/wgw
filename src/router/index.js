@@ -10,7 +10,8 @@ import HxDetail from '@/page/hxPicList/children/detail'
 import Map from '@/page/map/map'
 import About from '@/page/about/singlePage'
 import RegisterLogin from '@/page/registerLogin/registerLogin'
-import Order from '@/page/order/order'
+import Order from '@/page/order/order1'
+import VueValidate from '@/page/validate/test'
 
 Vue.use(Router)
 
@@ -71,6 +72,10 @@ export default new Router({
     {
       path: '/order',
       component: Order
+    }, // vue-validate验证测试
+    {
+      path: '/formtest',
+      component: VueValidate
     }
   ]
 })
