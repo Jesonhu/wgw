@@ -22,7 +22,7 @@
 </template>
 
 <script>
-  import { Loadmore } from 'mint-ui'
+  import { Loadmore, Indicator } from 'mint-ui'
   import vHeader from 'components/header/header1'
   import newList from 'components/newList/newList1'
   import axios from 'axios'
@@ -39,6 +39,8 @@
         bottomDropText: '松开加载更多',
         bottomLoadingText: '拼命加载中...'
       }
+    },
+    created () {
     },
     methods: {
       handleBottomChange (status) {
@@ -64,21 +66,28 @@
       }
     },
     mounted () {
+      const _this = this
+      Indicator.open('加载中...')
       // this.wrapperHeight = document.documentElement.clientHeight - this.$refs.wrapper.getBoundingClientRect().top
 //      console.log(this.$route.params)
 //      const id = this.$route.params.id
-      axios.get(`/api/active`)
-        .then((res) => {
-          if (res.status === 200) {
-            const data = res.data
-            if (data.state === 1) {
-              this.list = data.data
+      setTimeout(function () {
+        axios.get(`/api/active`)
+          .then((res) => {
+            if (res.status === 200) {
+              const data = res.data
+              if (data.state === 1) {
+                Indicator.close()
+                _this.list = data.data
+              }
             }
-          }
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+      }, 300)
+    },
+    computed: {
     },
     components: {
       Loadmore,

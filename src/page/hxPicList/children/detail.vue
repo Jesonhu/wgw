@@ -25,6 +25,7 @@
 <script>
   import axios from 'axios'
   import vHeader from 'components/header/header3'
+  import { Indicator } from 'mint-ui'
 
   export default {
     data () {
@@ -47,6 +48,7 @@
       }
     },
     mounted () {
+      Indicator.open('加载中...')
       const queryId = this.$route.query.id
       axios.get(`/api/lpshow/detail`, {
         params: {
@@ -57,6 +59,7 @@
           if (res.status === 200) {
             const data = res.data
             if (data.state === 1) {
+              Indicator.close()
               this.picList = data.data.picList
             }
           }

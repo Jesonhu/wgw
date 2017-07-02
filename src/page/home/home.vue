@@ -36,6 +36,17 @@
           showSideBar: false
         }
       },
+      created () {
+        // this.$Loading.config({
+        //   color: '#b4282d',
+        //   failedColor: '#f0ad4e',
+        //   height: 5
+        // })
+        // this.$Loading.start()
+      },
+      mounted () {
+        // this.$Loading.finish()
+      },
       methods: {
         sideBarInit () { // 处理sidebar发来的请求
           this.showSideBar = false
