@@ -42,14 +42,19 @@ export default new Router({
     },
     { // 新闻资讯列表页
       path: '/active',
-      component: NewList,
-      children: [ // 新闻资讯详情页
-        {
-          path: 'detail',
-          name: 'activeDetail',
-          component: NewDetail
-        }
-      ]
+      component: NewList
+      // children: [ // 新闻资讯详情页
+      //   {
+      //     path: 'detail',
+      //     name: 'activeDetail',
+      //     component: NewDetail
+      //   }
+      // ]
+    },
+    {
+      path: '/active/detail',
+      name: 'activeDetail',
+      component: NewDetail
     },
     { // 户型图鉴赏列表
       path: '/hxtype',

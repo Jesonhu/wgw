@@ -68,7 +68,7 @@
       background:$themBgColor;
 
       .title{
-        width:100%; hegiht: 2.73rem;
+        width:100%; height: 2.73rem;
         background:#fff;
         line-height: 2.73rem;
         text-align: center;
