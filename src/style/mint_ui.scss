@@ -9,3 +9,23 @@
     color:#fff;
   }
 }
+
+/* mint-field */
+// 文字设置
+.mint-cell-wrapper{
+  font-size:12px;
+}
+/* mint-field提示颜色优化 */
+.mint-field-state{
+  .mintui{
+    &.mintui-field-success{
+      color: #4caf50;
+    }
+    &.mintui-field-warning{
+      color: #ffc107;
+    }
+    &.mintui-field-error{
+      color: #f44336;
+    }
+  }
+}

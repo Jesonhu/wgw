@@ -12,6 +12,9 @@ import About from '@/page/about/singlePage'
 import RegisterLogin from '@/page/registerLogin/registerLogin'
 import Order from '@/page/order/order1'
 import VueValidate from '@/page/validate/test'
+import Login from '@/page/login/login'
+import Register from '@/page/register/register'
+import Reset from '@/page/reset/reset'
 
 Vue.use(Router)
 
@@ -76,6 +79,18 @@ export default new Router({
     {
       path: '/formtest',
       component: VueValidate
+    },
+    {
+      path: '/login',
+      component: Login
+    },
+    {
+      path: '/register',
+      component: Register
+    },
+    {
+      path: '/reset',
+      component: Reset
     }
   ]
 })

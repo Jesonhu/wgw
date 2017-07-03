@@ -4,7 +4,7 @@
     <div class="con-wrap">
       <div class="hd">
         <router-link class="link"
-         to="/join">
+         to="/login">
           <div class="user-info">
             <div class="user-avatar">
               <img alt="" class="img"
