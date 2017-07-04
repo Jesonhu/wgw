@@ -77,11 +77,11 @@
   }
   .swiper-box {
     width: 100%;
-    height: 100%;
+    height: calc(100vh - 1.9rem)!important;
     margin: 0 auto;
   }
   .swiper-item {
-    height: 100%;
+    height: calc(100vh - 1.9rem)!important;
     text-align: center;
     font-size: 18px ;
     background: #fff;

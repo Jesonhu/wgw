@@ -40,6 +40,7 @@
             slidesPerView: 'auto',
             centeredSlides: true,
             paginationClickable: true,
+            autoplayDisableOnInteraction: false,
             spaceBetween: 0
           },
           swiper: [

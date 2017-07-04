@@ -19,7 +19,7 @@
     // dynamically set transition based on route change
     watch: {
       '$route' (to, from) {
-        // 已 '/'分隔 去掉空字符串
+        // 以 '/'分隔 去掉空字符串
         const toPath = to.path.split('/')
         const fromPath = from.path.split('/')
         const toPathLen = this.removeEmpty(toPath)

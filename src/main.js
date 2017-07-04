@@ -5,7 +5,7 @@ import App from './App'
 import router from './router'
 import './plugins/rem'
 import FastClick from 'fastclick'
-// import VueLazyload from 'vue-lazyload'
+import VueLazyload from 'vue-lazyload' // 懒加载
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
@@ -30,12 +30,24 @@ Vue.use(MintUI)
 Vue.use(VueAwesomeSwiper)
 Vue.use(Vuelidate)
 // 懒加载
-// Vue.use(VueLazyload, {
-//   preLoad: 1.3,
-//   error: './assets/loading_error.png',
-//   loading: './assets/loading.png',
-//   attempt: 1
-// })
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  error: 'http://hilongjw.github.io/vue-lazyload/dist/404.png',
+  loading: './assets/loading-spin.svg',
+  attempt: 1,
+  listenEvents: [ 'scroll' ],
+  adapter: {
+    loaded (listener, fromCache, Init) {
+
+    },
+    loading (listener, Init) {
+      console.log('Lazy loading')
+    },
+    error (listener, Init) {
+      console.log('Lazy error')
+    }
+  }
+})
 
 Vue.config.productionTip = false
 

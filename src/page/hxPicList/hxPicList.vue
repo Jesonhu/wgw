@@ -11,7 +11,7 @@
          v-for="(item,itemIndex) in listData">
           <h3 class="title">{{item.title}}</h3>
           <ul class="house-list">
-            <li class="house-item"
+            <li class="house-item b-1px-t"
              v-for="(house,houseIndex) in item.houseList"
              @click="toggle(house)">
                 <p class="name">
@@ -133,7 +133,6 @@
         color:#252e32;
         border-top-left-radius:5px;
         border-top-right-radius:5px;
-        border-bottom:1px solid #ededed;
         background-color:#fbfbfb;
       }
       .house-list {
@@ -199,7 +198,7 @@
               width: 16px;
               height: 16px;
               overflow: hidden;
-              border: 1px solid #e2e1e0;
+              border: 1px solid #fff;
               border-right:0;
               border-bottom: 0;
               background:rgb(242,241,240);

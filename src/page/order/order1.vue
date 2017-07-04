@@ -4,13 +4,13 @@
      :hasBg="true"
      :titleName="`预约看房报名`"></v-header>
 
-    <form @submit.prevent="submit">
+    <form @submit.prevent="submit" class="from-order">
 
       <!-- 姓名 -->
       <div class="form-group" v-bind:class="{ 'form-group--error': $v.form.name.$error }">
         <label class="form__label">姓名</label>
         <div class="input-wrap">
-          <input class="form__input" placeholder="请输入姓名"
+          <input class="form__input b-1px" placeholder="请输入姓名"
            v-model.trim="form.name"
            @input="userTouch($v.form.name)"
            @blur="handleBlur($v.form.name.$invalid, 0)">
@@ -27,7 +27,7 @@
       <div class="form-group" v-bind:class="{ 'form-group--error': $v.form.tel.$error }">
         <label class="form__label">手机号</label>
         <div class="input-wrap">
-          <input class="form__input" placeholder="请输入手机号" type="number"
+          <input class="form__input b-1px" placeholder="请输入手机号" type="number"
            v-model.trim="form.tel"
            @input="$v.form.tel.$touch()"
            @blur="handleBlur($v.form.tel.$invalid, 1)">
@@ -46,7 +46,7 @@
 
         <div class="input-wrap pickers-wrap">
           <div class="input-wrap">
-            <input class="form__input" placeholder="请输入预约时间" type="text"
+            <input class="form__input b-1px" placeholder="请输入预约时间" type="text"
              v-model="form.dateTime"
              @click="open('picker')">
           <mt-datetime-picker
@@ -261,8 +261,17 @@
 
   .order-wrap{
     margin-top:2rem;
+    position: relative;
+    min-height: 100vh;
   }
 
+  .from-order{
+    position: absolute;
+    top:0;
+    bottom:0;
+    width:100%;
+    left:0;
+  }
   .form-group{
     margin:10px;
     /* 留言 */
@@ -271,7 +280,6 @@
       margin:5px 0;
       width:100%;
       font-size: 12px;
-      border: 1px solid #dddee1;
       border-radius: 4px;
       color: #495060;
       background-image: none;

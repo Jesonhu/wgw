@@ -6,7 +6,7 @@
        :to="{name: 'activeDetail', query: {id: item.id}}" class="link">
         <div class="img-wrap">
           <img class="img"
-           :src="item.listPic"
+           v-lazy="item.listPic"
            :alt="item.name">
         </div>
         <div class="bd">
@@ -27,6 +27,9 @@
     <!-- 文章详情
     <newDetail @add="newDetail" :newDetail="selectedNew" ref="detail"></newDetail>
     -->
+
+    <!-- 文字加载提示 -->
+    <p class="pull-text">{{scrollText}}</p>
   </ul>
 </template>
 
@@ -34,10 +37,14 @@
   import newDetail from 'components/newDetail/newDetail'
 
   export default {
-    props: ['list'],
+    props: ['list', 'scrollText'],
     data () {
       return {
-        selectedNew: {} // 保存当前点击的文章
+        selectedNew: {}, // 保存当前点击的文章
+        // 懒加载
+        imgObj: {
+          error: 'http://fuss10.elemecdn.com/7/85/e478e4b26af74f4539c79f31fde80jpeg.jpeg'
+        }
       }
     },
     methods: {
@@ -63,6 +70,7 @@
     $hei: 115px;
     $bg: #f1f1f1;
 
+    position: relative;
     margin-bottom:0;
     padding: 5px 10px 10px;
     .item{
@@ -76,12 +84,20 @@
         height: inherit;
       }
       .img-wrap{
+        position: relative;
         flex: 0 0 40%;
         height: inherit;
         .img{
           display:block;
           width:100%;
           height:100%;
+        }
+        .lazy-error[lazy=error]{
+          position: absolute;
+          width:100%;
+          height:100%;
+          left:0;
+          top:0;
         }
       }
       .bd{
@@ -118,6 +134,15 @@
           justify-content: space-between;
         }
       }
+    }
+
+    .pull-text{
+      position: absolute;
+      width:100%;
+      bottom:-9px;
+      text-align: center;
+      height:9px;
+      line-height: 9px;
     }
   }
 </style>

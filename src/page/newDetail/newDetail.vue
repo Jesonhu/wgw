@@ -31,7 +31,7 @@
         loading: false,
         post: null,
         error: null,
-        titleName: '活动',
+        titleName: '',
         newDetail: null
       }
     },
@@ -69,6 +69,7 @@
               if (data.state === 1) {
                 this.loading = false
                 this.newDetail = data.data
+                this.titleName = data.data.name
               }
             } else {
               this.error = '数据加载失败，请重试'
