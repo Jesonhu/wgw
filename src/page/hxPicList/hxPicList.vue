@@ -1,6 +1,6 @@
 <template>
   <div class="hxpic-list">
-    <v-header></v-header>
+    <v-header :titleName="'户型展示'"></v-header:>
 
     <div class="header">
       <img src="http://vcl-pictures.qiniucdn.com/FuQF9yMlATjxAaqcOXhYnkVLHlXv" alt="" class="img">
@@ -52,7 +52,7 @@
                 'desc': '一室一厅一卫 约43.64平米'
               },
               {
-                'name': 'css-001',
+                'name': 'css-002',
                 'subname': '企业高管公寓',
                 'desc': '一室一厅一卫 约43.64平米'
               }
@@ -62,12 +62,12 @@
             'title': '企业高管公寓',
             'houseList': [
               {
-                'name': 'css-001',
+                'name': 'css-011',
                 'subname': '企业高管公寓',
                 'desc': '一室一厅一卫 约43.64平米'
               },
               {
-                'name': 'css-001',
+                'name': 'css-012',
                 'subname': '企业高管公寓',
                 'desc': '一室一厅一卫 约43.64平米'
               }
@@ -77,7 +77,7 @@
             'title': '企业高管公寓',
             'houseList': [
               {
-                'name': 'css-001',
+                'name': 'css-013',
                 'subname': '企业高管公寓',
                 'desc': '一室一厅一卫 约43.64平米'
               }
@@ -138,7 +138,6 @@
       .house-list {
         .house-item{
           z-index: 1;
-          border-bottom:1px solid #e2e1e0;
           position: relative;
           display:block;
           padding-bottom:0;
@@ -169,13 +168,13 @@
             z-index: 999;
             content:"";
             position: absolute;
-            top:10px;
+            top:25px;
             right:15px;
             display:block;
             width:13px;
             height:10px;
             box-sizing: content-box;
-            border:20px solid #fff;
+            border:10px solid #fff;
             background:url(http://m.vcooline.com/stylesheets/app/imgs/sprite.png) no-repeat -100px 0 / 160px auto;
             cursor: pointer;
             transition:.3s roate linear;

@@ -2,7 +2,7 @@
   <div>
     <v-header :hasBg="true" :titleName="'项目地址'"></v-header>
 
-  <baidu-map class="bm-view" ak="tEB2z1e0XNrVUs2bka1XwsIoRrlnpp6G"
+  <baidu-map class="bm-view" ak="2GWORARpWbDWc83Zlyo3Ph55DHIwNm74"
    :center="defaultPoint"
    @ready="handler"
    :zoom="15"
@@ -30,7 +30,7 @@
 <script type="text/ecmascript-6">
   import vHeader from 'components/header/header3'
   import { BaiduMap, BmGeolocation, BmCopyright, BmMarker, BmInfoWindow, BmNavigation, BmLabel, BmContextMenu } from 'vue-baidu-map'
-
+//  tEB2z1e0XNrVUs2bka1XwsIoRrlnpp6G
   export default {
     data () {
       return {

@@ -2,7 +2,7 @@
   <!--swiper全屏-->
   <div style="display: relative;width:100%;height:100vh;padding-top:1.919rem">
     <!-- 顶部导航 -->
-  <v-header :hasBg="true"></v-header>
+  <v-header :hasBg="true" :titleName="title"></v-header>
   <swiper :options="swiperOption" class="swiper-box">
     <swiper-slide class="swiper-item"
      v-for="(item,index) in picList"
@@ -44,7 +44,8 @@
             slideShadows: true
           }
         },
-        picList: []
+        picList: [],
+        title: ''
       }
     },
     mounted () {
@@ -61,6 +62,7 @@
             if (data.state === 1) {
               Indicator.close()
               this.picList = data.data.picList
+              this.title = data.data.name
             }
           }
         })

@@ -63,6 +63,7 @@
             .img-wrap{
                 flex:0 0 30%;
                 padding:3px;
+                height:inherit;
                 .img{
                    display:block;
                    width:100%;
