@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-header :hasBg="true"></v-header>
+    <v-header :hasBg="true" :titleName="'项目地址'"></v-header>
 
   <baidu-map class="bm-view" ak="tEB2z1e0XNrVUs2bka1XwsIoRrlnpp6G"
    :center="defaultPoint"

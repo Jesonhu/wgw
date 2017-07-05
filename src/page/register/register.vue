@@ -95,6 +95,7 @@
           let result = Object.assign({}, this.form)
           delete result.currentYzm
           const formatData = JSON.stringify(result)
+          this.handelToast('注册成功,控制台查看注册提交信息')
           console.log(formatData)
         }
       },

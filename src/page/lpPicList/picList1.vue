@@ -1,6 +1,6 @@
 <template>
     <div class="pic-list-wrap">
-        <v-header></v-header>
+        <v-header :titleName="'楼盘展示'"></v-header>
 
         <banner></banner>
 
@@ -13,10 +13,10 @@
                         <img class="img" src="http://kzcdn.itc.cn/res/post/images/bgimage/1.png?v=4.7" alt="">
                     </div>
                     <div class="con-bd">
-                        <p class="name">name</p>
+                        <p class="name">最新楼盘{{index}}</p>
                         <p class="time">2017-6-6</p>
-                        <p class="view">5</p>
-                        <i class="fa fa-chevron-right"></i>
+                        <p class="view"><i class="fa fa-eye"></i>5</p>
+                        <i class="arrow fa fa-chevron-right"></i>
                     </div>
                 </router-link>
             </li>
@@ -76,9 +76,14 @@
                 font-size:12px;
                 color:#666;
                 .name{
-                    font-size:24px;
+                    font-size:21px;
                 }
-                .fa{
+                .view{
+                  .fa{
+                    margin-right:5px;
+                  }
+                }
+                .fa.arrow{
                    position:absolute;
                    right: 18px;
                    top: 50%;

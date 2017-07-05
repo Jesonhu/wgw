@@ -14,7 +14,11 @@
           </p>
         </div>
         <div class="bd">
+          <!-- 摘要 -->
+          <v-summary></v-summary>
+
           {{newDetail.info}}
+
         </div>
       </div>
     </div>
@@ -23,6 +27,9 @@
 <script>
   import vHeader from 'components/header/header3'
   import axios from 'axios'
+  // 组件
+  // 摘要
+  import summary from 'components/summary/summary1'
 
   export default {
     data () {
@@ -81,7 +88,8 @@
       }
     },
     components: {
-      vHeader
+      vHeader,
+      'v-summary': summary
     }
   }
 </script>
@@ -104,7 +112,7 @@
     }
   }
   .page-count{
-    margin-top: 0.9rem;
+    margin-top: 1.9rem;
     padding:0 14px 0 14px;
     .title{
       font-weight: 100;

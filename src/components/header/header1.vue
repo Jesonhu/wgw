@@ -10,14 +10,14 @@
     </div>
     <div class="site-name">
       <a href="" class="link">
-        青春在建
+        {{titleName}}
       </a>
     </div>
-    <div class="cell cell-search">
-      <a href="" class="link">
-        <i class="fa fa-search"></i>
-      </a>
-    </div>
+    <!--<div class="cell cell-search">-->
+      <!--<a href="" class="link">-->
+        <!--<i class="fa fa-search"></i>-->
+      <!--</a>-->
+    <!--</div>-->
     <div class="cell cell-menu"
      @click.prevent="showSideBar = !showSideBar">
       <a href="" class="link">
@@ -33,6 +33,7 @@
   import slideBar from 'components/sidebar/sidebar2'
 
   export default {
+    props: ['titleName'],
     data () {
       return {
         showSideBar: false

@@ -146,6 +146,7 @@
       submit () {
         if (this.canSubmitMark) {
           const formatData = JSON.stringify(this.form)
+          this.handelToast('预约成功,控制台查看发送的数据')
           console.log(formatData)
         }
       },
@@ -267,7 +268,7 @@
 
   .from-order{
     position: absolute;
-    top:0;
+    top:2rem;
     bottom:0;
     width:100%;
     left:0;

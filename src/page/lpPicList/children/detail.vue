@@ -2,7 +2,7 @@
   <!--swiper全屏-->
   <div style="display: relative;width:100%;height:100%;padding-top:1.919rem">
     <!-- 顶部导航 -->
-  <v-header :hasBg="true"></v-header>
+  <v-header :hasBg="true" :titleName="name"></v-header>
   <swiper :options="swiperOption" class="swiper-box">
     <swiper-slide class="swiper-item"
      v-for="item in picList"
@@ -34,6 +34,7 @@
           mousewheelControl: true,
           paginationType: 'fraction' // xx/count 导航
         },
+        name: '',
         picList: []
       }
     },
@@ -48,6 +49,7 @@
           if (res.status === 200) {
             const data = res.data
             if (data.state === 1) {
+              this.name = data.data.name
               this.picList = data.data.picList
             }
           }

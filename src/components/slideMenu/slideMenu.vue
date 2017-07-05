@@ -27,18 +27,38 @@
           },
           {
             icon: 'fa-home',
-            link: '/',
-            name: '系部简介'
+            link: '/lpshow',
+            name: '楼盘鉴赏'
           },
           {
             icon: 'fa-home',
-            link: '/',
-            name: '组织结构'
+            link: '/hxtype',
+            name: '户型图展示'
           },
           {
             icon: 'fa-home',
-            link: '/',
-            name: '社团介绍'
+            link: '/fullview',
+            name: '全景看房'
+          },
+          {
+            icon: 'fa-home',
+            link: '/map',
+            name: '项目地址'
+          },
+          {
+            icon: 'fa-home',
+            link: '/about',
+            name: '公司简介'
+          },
+          {
+            icon: 'fa-home',
+            link: '/active',
+            name: '最新资讯'
+          },
+          {
+            icon: 'fa-home',
+            link: '/order',
+            name: '预约看房'
           }
         ]
       }
