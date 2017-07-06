@@ -3,7 +3,8 @@
     <li class="item"
      v-for="item in list">
       <router-link
-       :to="{name: 'activeDetail', query: {id: item.id}}" class="link">
+       :to="{name: 'activeDetail', query: {id: item.id}}" class="link"
+       @click="click($event)">
         <div class="img-wrap">
           <img class="img"
            v-lazy="item.listPic"
@@ -29,7 +30,7 @@
     -->
 
     <!-- 文字加载提示 -->
-    <p class="pull-text">{{scrollText}}</p>
+    <!--<p class="pull-text">{{scrollText}}</p>-->
   </ul>
 </template>
 
@@ -54,6 +55,13 @@
       },
       newDetail () { // 处理详情页面做出的更改
 
+      },
+      click (ev) {
+        console.log(ev)
+        if (!ev._constructed && !ev.forwardedTouchEvent) { // 使用了BS
+          return
+        }
+        alert(1)
       }
     },
     mounted () {

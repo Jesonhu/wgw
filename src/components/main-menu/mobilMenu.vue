@@ -106,6 +106,7 @@
             margin-top:8px;
             .img-wrap{
                 flex: 0 0 70%;
+                height:100%;
                 .img{
                   display: block;
                   width: 100%;
