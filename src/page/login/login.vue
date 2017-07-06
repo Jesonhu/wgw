@@ -39,6 +39,7 @@
   import { required, sameAs } from 'vuelidate/lib/validators'
   import { isPhone } from '../../plugins/form'
   import { Toast } from 'mint-ui'
+//  import { axios } from 'axios'
 
   export default {
     data () {
@@ -88,6 +89,14 @@
           const formatData = JSON.stringify(result)
           this.handelToast('登录成功,控制台查看登录提交信息')
           console.log(formatData)
+//          axios.post('/url', formatData)
+//            .then(function (res) {
+//              console.log(res)
+//            })
+//            .catch(function (error) {
+//              console.log(error)
+//            })
+          this.$store.dispatch('setUserInfo', {tel: this.form.tel, loginStatus: true})
         }
       },
       handelToast (msg) {

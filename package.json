@@ -22,7 +22,8 @@
     "vue-baidu-map": "^0.10.8",
     "vue-lazyload": "^1.0.5",
     "vue-router": "^2.3.1",
-    "vuelidate": "^0.5.0"
+    "vuelidate": "^0.5.0",
+    "vuex": "^2.3.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",

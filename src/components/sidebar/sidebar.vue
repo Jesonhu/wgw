@@ -10,12 +10,19 @@
       </div>
 
       <slide-menu></slide-menu>
+      <div class="user-status">
+        <div class="login" v-if="isLogin" @click="userHandle">注销</div>
+        <div class="no-login" v-if="!isLogin">
+          <router-link to="/login" class="link">请登录</router-link>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
     import slideMenu from 'components/slideMenu/slideMenu'
+    import { mapState } from 'vuex'
 
     export default {
       name: 'sidebar',
@@ -31,10 +38,16 @@
         active () {
           this.isActive = false
           this.$emit('parent') // 向header.vue发送请求
+        },
+        userHandle () {
+          // 注销
+          this.$store.dispatch('removeUserInfo')
         }
       },
       computed: {
-
+        ...mapState({
+          isLogin: state => state.user.localUserInfo.loginStatus
+        })
       },
       watch: {
         show () {
@@ -87,5 +100,25 @@
   .bg-wrap{
     flex:1;
     background-color:rgba(0,0,0,.5);
+  }
+
+  .login,
+  .no-login{
+    display: block;
+    margin: 0 auto;
+    margin-top:20px;
+    width: 90%;
+    height: 1.45rem;
+    line-height: 1.45rem;
+    border-radius: 3px;
+    text-align: center;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    background-color: #c53c43;
+    .link {
+      display:block;
+      color:#fff;
+    }
   }
 </style>

@@ -16,6 +16,10 @@
 
       <!-- 版权 -->
       <copy-right></copy-right>
+
+      <!-- 登录/未登录提示 -->
+      <!--<v-toast>-->
+      <!--</v-toast>-->
     </div>
 
 </template>
@@ -26,6 +30,9 @@
     import menu from 'components/main-menu/mobilMenu'
     import sideBar from 'components/sidebar/sidebar'
     import copyRight from 'components/copyRight/copyRight'
+    import vToast from 'components/toast/toast'
+    import { Toast } from 'mint-ui'
+    import { mapState } from 'vuex'
 
 //    import { Tabbar, TabItem } from 'mint-ui'
 
@@ -44,12 +51,33 @@
         // })
         // this.$Loading.start()
       },
+      computed: {
+        // ...mapState(['activeIndex']) vuex不使用module的写法
+        ...mapState({
+          localUserInfo: state => state.user.localUserInfo
+        })
+      },
       mounted () {
-        // this.$Loading.finish()
+        // 登录和未登录的toast提示
+        let isLogin = this.$store.state.user.localUserInfo.loginStatus
+        if (isLogin) {
+          this.handelToast('欢迎回来:-D')
+        } else {
+          console.log('未登录过')
+        }
       },
       methods: {
         sideBarInit () { // 处理sidebar发来的请求
           this.showSideBar = false
+        },
+        handelToast (msg) {
+          Toast({
+            message: msg,
+            position: 'middle',
+            iconClass: 'icon icon-success',
+            className: 'toast-big',
+            duration: 1000
+          })
         }
       },
       components: {
@@ -57,7 +85,8 @@
         vMenu: menu,
         banner,
         sideBar,
-        copyRight
+        copyRight,
+        vToast
       }
     }
 </script>

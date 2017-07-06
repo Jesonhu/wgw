@@ -40,6 +40,7 @@
   import { required, sameAs, minLength } from 'vuelidate/lib/validators'
   import { isPhone } from '../../plugins/form'
   import { Toast } from 'mint-ui'
+  import axios from 'axios'
 
   export default {
     data () {
@@ -94,6 +95,13 @@
           const formatData = JSON.stringify(result)
           this.handelToast('密码重置成功,控制台查看密码提交信息')
           console.log(formatData)
+          axios.post('/reset', formatData)
+            .then((res) => {
+              console.log(res)
+            })
+            .catch((error) => {
+              console.log(error)
+            })
         }
       },
       handelToast (msg) {
