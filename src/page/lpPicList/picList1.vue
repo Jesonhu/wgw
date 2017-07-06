@@ -77,7 +77,8 @@
                 font-size:12px;
                 color:#666;
                 .name{
-                    font-size:21px;
+                    margin-top:10px;
+                    font-size:.6rem;
                 }
                 .view{
                   .fa{

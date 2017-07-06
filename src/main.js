@@ -18,6 +18,7 @@ import 'muse-ui/dist/muse-ui.css'
 import 'muse-ui/dist/theme-teal.min.css' // 使用 carbon 主题
 import './style/muse.scss'
 import Vuelidate from 'vuelidate' // 表单验证
+import BaiduMap from 'vue-baidu-map' // 百度地图
 
 if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', function () {
@@ -29,6 +30,9 @@ Vue.use(MuseUI)
 Vue.use(MintUI)
 Vue.use(VueAwesomeSwiper)
 Vue.use(Vuelidate)
+Vue.use(BaiduMap, {
+  ak: 'tEB2z1e0XNrVUs2bka1XwsIoRrlnpp6G'
+})
 // 懒加载
 Vue.use(VueLazyload, {
   preLoad: 1.3,

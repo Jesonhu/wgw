@@ -50,7 +50,7 @@
   @import 'style/common';
   .app {
     position: relative;
-    min-height: 100vh;
+    /*min-height: 100vh;*/
   }
 
   /* 路由切换动态样式 */

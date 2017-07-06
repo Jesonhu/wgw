@@ -11,10 +11,10 @@ import Map from '@/page/map/map'
 import About from '@/page/about/singlePage'
 import RegisterLogin from '@/page/registerLogin/registerLogin'
 import Order from '@/page/order/order1'
-import VueValidate from '@/page/validate/test'
 import Login from '@/page/login/login'
 import Register from '@/page/register/register'
 import Reset from '@/page/reset/reset'
+import FullView from '@/page/fullView/fullView' // 全景图页面
 
 Vue.use(Router)
 
@@ -81,19 +81,19 @@ export default new Router({
       path: '/order',
       component: Order
     }, // vue-validate验证测试
-    {
-      path: '/formtest',
-      component: VueValidate
+    { // 全景图页面
+      path: '/fullview',
+      component: FullView
     },
-    {
+    { // 登录
       path: '/login',
       component: Login
     },
-    {
+    { // 注册
       path: '/register',
       component: Register
     },
-    {
+    { // 密码重置
       path: '/reset',
       component: Reset
     }

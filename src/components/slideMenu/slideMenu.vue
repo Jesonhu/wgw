@@ -3,7 +3,7 @@
     <ul class="list">
       <li class="item"
        v-for="(item,index) in list"
-       :class="{'is-active': index==0}">
+       :class="{'is-active': index==999}">
         <router-link class="link"
          :to="item.link">
           <i class="icon fa"

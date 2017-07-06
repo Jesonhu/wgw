@@ -1,5 +1,5 @@
 <template>
-  <div class="register-login">
+  <div class="register">
     <v-header :titleName="'注册'"></v-header>
     <div class="hd-bg"></div>
 
@@ -142,8 +142,9 @@
     width:100%;
     background-size:100%;
   }
-  .register-login{
+  .register{
     position: relative;
+    height: 100vh;
   }
   .bd-wrap{
     position: absolute;

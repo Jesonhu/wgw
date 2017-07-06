@@ -180,6 +180,7 @@
           this.form.count++
         } else { // 减少
           if (this.form.count === 1) {
+            this.handelToast('随行人数至少有一人')
             return
           }
           this.form.count--
@@ -199,7 +200,7 @@
       handelToast (msg) {
         Toast({
           message: msg,
-          position: 'middle',
+          position: 'top',
           duration: 1000
         })
       },
@@ -277,13 +278,18 @@
     margin:10px;
     /* 留言 */
     .mod-form-textarea{
-      display:block;
-      margin:5px 0;
-      width:100%;
+      display: inline-block;
+      width: 100%;
+      margin-top:5px;
       font-size: 12px;
+      border: 1px solid #dddee1;
       border-radius: 4px;
       color: #495060;
+      background-color: #fff;
       background-image: none;
+      position: relative;
+      cursor: text;
+      transition: border 0.2s cubic-bezier(0.45, 0.05, 0.55, 0.95), background 0.2s cubic-bezier(0.45, 0.05, 0.55, 0.95), box-shadow 0.2s cubic-bezier(0.45, 0.05, 0.55, 0.95);
     }
     &.inline-group{
       .pickers-wrap{
@@ -423,15 +429,16 @@
     margin: 10px;
     & > * ,
     .input[type=submit] {
-      dipslya:block;
-      width:100%;
-      height: 25px;
-      line-height: 25px;
+      display: block;
+      width: 100%;
+      height: 1.45rem;
+      margin: 0.768rem 0;
+      border-radius: 3px;
       text-align: center;
-      color:#fff;
-      font-size:14px;
-      border-radius:5px;
-      background:$museTthemColor;
+      border: none;
+      color: #fff;
+      font-size: 14px;
+      background-color: #c53c43;
     }
   }
 </style>

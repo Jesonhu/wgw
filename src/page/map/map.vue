@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="map-wrap">
     <v-header :hasBg="true" :titleName="'项目地址'"></v-header>
 
-  <baidu-map class="bm-view" ak="2GWORARpWbDWc83Zlyo3Ph55DHIwNm74"
+    <baidu-map class="bm-view" ak="tEB2z1e0XNrVUs2bka1XwsIoRrlnpp6G"
    :center="defaultPoint"
    @ready="handler"
    :zoom="15"
@@ -19,7 +19,10 @@
     <!-- 覆盖物:点 -->
     <bm-marker :position="defaultPoint" :dragging="false" @click="infoWindowOpen" animation="BMAP_ANIMATION_BOUNCE">
       <!-- 点击弹出自定义菜单 -->
-      <bm-info-window :show="show" @close="infoWindowClose" @open="infoWindowOpen">自定义内容</bm-info-window>
+      <bm-info-window :show="show" @close="infoWindowClose" @open="infoWindowOpen">
+        自定义内容
+        <p class="txt-red">点击可以添加自定义内容</p>
+      </bm-info-window>
       <!-- mark内容 -->
       <bm-label content="华科" :labelStyle="{color: 'red', fontSize : '12px'}" :offset="{width: 20, height: 8}"/>
     </bm-marker>
@@ -29,7 +32,7 @@
 
 <script type="text/ecmascript-6">
   import vHeader from 'components/header/header3'
-  import { BaiduMap, BmGeolocation, BmCopyright, BmMarker, BmInfoWindow, BmNavigation, BmLabel, BmContextMenu } from 'vue-baidu-map'
+//  import { BaiduMap, BmGeolocation, BmCopyright, BmMarker, BmInfoWindow, BmNavigation, BmLabel, BmContextMenu } from 'vue-baidu-map'
 //  tEB2z1e0XNrVUs2bka1XwsIoRrlnpp6G
   export default {
     data () {
@@ -41,11 +44,17 @@
         }
       }
     },
+    created () {
+    },
+    mounted () {
+      alert(1)
+    },
     methods: {
       handler ({BMap, map}) {
 //        console.log(BMap, map)
         this.lng = 114.420059
         this.lat = 30.518942
+        alert('map', this)
       },
       infoWindowClose () {
         this.show = false
@@ -55,24 +64,30 @@
       }
     },
     components: {
-      vHeader,
-      BaiduMap,
-      BmGeolocation,
-      BmCopyright,
-      BmMarker,
-      BmInfoWindow,
-      BmNavigation,
-      BmLabel,
-      BmContextMenu
+      vHeader
+//      BaiduMap,
+//      BmGeolocation,
+//      BmCopyright,
+//      BmMarker,
+//      BmInfoWindow,
+//      BmNavigation,
+//      BmLabel,
+//      BmContextMenu
     }
   }
 </script>
 
 <style>
+  .map-wrap{
+    height:100vh;
+  }
   .bm-view {
     z-index: 1;
     position: absolute;
-    top:0;left:0;bottom:0;
-    width: 100%;height: 100vh;
+    top:1.9rem;left:0;bottom:0;
+    width: 100%;height: calc(100% - 1.9rem);
+  }
+  .txt-red{
+    color:red;
   }
 </style>

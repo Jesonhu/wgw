@@ -1,5 +1,5 @@
 <template>
-  <div class="register-login">
+  <div class="login">
     <v-header :titleName="'登录'"></v-header>
     <div class="hd-bg"></div>
 
@@ -128,6 +128,9 @@
     height: 8rem;
     width:100%;
     background-size:100%;
+  }
+  .login{
+    height:100vh;
   }
   .bd-wrap{
     position: absolute;

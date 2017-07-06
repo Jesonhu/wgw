@@ -28,7 +28,7 @@
 </script>
 
 <style lang="scss">
-  $switchThemCol: #009688;
+  $switchThemCol: #c53c43;
 
   .mod-switch{
     display: inline-block;

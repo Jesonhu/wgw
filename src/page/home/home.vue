@@ -46,7 +46,6 @@
       },
       mounted () {
         // this.$Loading.finish()
-        console.log(1)
       },
       methods: {
         sideBarInit () { // 处理sidebar发来的请求

@@ -1,5 +1,5 @@
 <template>
-  <div class="register-login">
+  <div class="reset">
     <v-header :titleName="'忘记密码'"></v-header>
     <div class="hd-bg"></div>
 
@@ -139,8 +139,9 @@
     width:100%;
     background-size:100%;
   }
-  .register-login{
+  .reset{
     position: relative;
+    height: 100vh;
   }
   .bd-wrap{
     position: absolute;
