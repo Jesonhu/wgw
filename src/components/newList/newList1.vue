@@ -17,7 +17,7 @@
             <span class="look">
               <i class="fa fa-eye"></i>{{item.lookCount}}
             </span>
-            <span class="like">
+            <span class="like" @click.prevent="addLike">
               <i class="fa fa-heart-o"></i>{{item.likeCount}}
             </span>
           </p>
@@ -30,7 +30,7 @@
     -->
 
     <!-- 文字加载提示 -->
-    <!--<p class="pull-text">{{scrollText}}</p>-->
+    <p class="pull-text">{{scrollText}}</p>
   </ul>
 </template>
 
@@ -54,14 +54,9 @@
         this.$refs.detail.show()
       },
       newDetail () { // 处理详情页面做出的更改
-
       },
-      click (ev) {
-        console.log(ev)
-        if (!ev._constructed && !ev.forwardedTouchEvent) { // 使用了BS
-          return
-        }
-        alert(1)
+      addLike () {
+//        console.log('喜欢')
       }
     },
     mounted () {

@@ -7,6 +7,10 @@
           <img alt="" class="img"
            src="https://kzcdn.itc.cn/res/passport/images/default_headimg.png">
         </a>
+        <div class="user-info-wrap" v-if="isLogin">
+          <p class="user-name"><i class="fa fa-user-o"></i><span>{{userName}}</span></p>
+          <p class="last-login"><i class="fa fa-calendar-minus-o"></i><span>2017-6-6</span></p>
+        </div>
       </div>
 
       <slide-menu></slide-menu>
@@ -46,7 +50,8 @@
       },
       computed: {
         ...mapState({
-          isLogin: state => state.user.localUserInfo.loginStatus
+          isLogin: state => state.user.localUserInfo.loginStatus,
+          userName: state => state.user.localUserInfo.tel
         })
       },
       watch: {
@@ -89,11 +94,29 @@
       align-items: center;
       .link{
         display:block;
-        width:74px;
-        height:74px;
+        width:60px;
+        height:60px;
         line-height: 74px;
         border-radius:50%;
         overflow: hidden;
+        transition: .5s all linear;
+        .img{
+          display:block;
+          width:100%;
+          height:100%;
+        }
+      }
+    }
+    .user-info-wrap{
+      margin-left:10px;
+      font-size:12px;
+      color:#fff;
+      i, span{
+        color:#fff;
+      }
+      i{
+        margin-right: 5px;
+        color:#c53c43;
       }
     }
   }

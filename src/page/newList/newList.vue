@@ -29,7 +29,7 @@
   import vHeader from 'components/header/header1'
   import newList from 'components/newList/newList1'
   import axios from 'axios'
-//  import BScroll from 'better-scroll'
+  import BScroll from 'better-scroll'
 
   export default {
     data () {
@@ -80,7 +80,7 @@
       }
     },
     mounted () {
-//      const _this = this
+      const _this = this
       Indicator.open('加载中...')
       // this.wrapperHeight = document.documentElement.clientHeight - this.$refs.wrapper.getBoundingClientRect().top
 //      console.log(this.$route.params)
@@ -93,16 +93,22 @@
               Indicator.close()
               this.totalList = data.data
               this.list = data.data
-//              this.list = data.data.slice(0, 5) // 第一次只加载0~4共5条
-//              this.$nextTick(() => { // 视图变化后再初始化
-//                this.scroll = new BScroll(this.$refs.swrapper, {})
-//                // 松开时触发
-//                this.scroll.on('touchend', (pos) => {
-//                  if (pos.y < -180) {
-//                    this.showLeaveData(this.scroll)
-//                  }
-//                })
-//              })
+              this.list = data.data.slice(0, 5) // 第一次只加载0~4共5条
+              this.$nextTick(() => { // 视图变化后再初始化
+                this.scroll = new BScroll(this.$refs.swrapper, {
+                  click: true
+                })
+                // 松开时触发
+                this.scroll.on('touchend', (pos) => {
+                  if (pos.y < -320) {
+                    if (this.list.length === this.totalList.length) {
+                      return
+                    }
+                    this.scrollText = '松开加载更多'
+                    _this.showLeaveData(this.scroll)
+                  }
+                })
+              })
             }
           }
         })
@@ -137,6 +143,7 @@
 
   .new-list{
     background:#f1f1f1;
+    height:100vh;
   }
   .hd{
     position: relative;
@@ -191,7 +198,7 @@
 
   /* 滚动外层容器 */
   .scroll-wrapper{
-    /*position: absolute;*/
+    position: absolute;
     top:159px;
     bottom:9px;
     width:100%;
