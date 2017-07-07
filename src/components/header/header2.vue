@@ -14,7 +14,7 @@
       </a>
     </div>
     <div class="cell cell-menu"
-     @click.prevent="showSideBar = !showSideBar">
+     @click.prevent="checkLogin">
       <a href="" class="link">
         <i class="fa fa-user-circle-o"></i>
       </a>
@@ -26,6 +26,7 @@
 
 <script>
   import slideBar from 'components/sidebar/sidebar2'
+  import { mapState } from 'vuex'
 
   export default {
     data () {
@@ -33,12 +34,25 @@
         showSideBar: false
       }
     },
+    computed: {
+      ...mapState({
+        isLogin: state => state.user.localUserInfo.loginStatus
+      })
+    },
     methods: {
       sideBarInit () { // 处理sidebar发来的请求
         this.showSideBar = false
       },
       goBack () { // 派发消息给newDetail.vue让其处理
         this.$emit('handleBack')
+      },
+      checkLogin () { // 登录后可以点击未登录点击选择是否登录
+        console.log(1)
+        if (this.isLogin) {
+          this.showSideBar = !this.showSideBar
+        } else {
+          console.log('未登录')
+        }
       }
     },
     components: {

@@ -51,7 +51,7 @@
       computed: {
         ...mapState({
           isLogin: state => state.user.localUserInfo.loginStatus,
-          userName: state => state.user.localUserInfo.tel
+          userName: state => state.user.localUserInfo
         })
       },
       watch: {

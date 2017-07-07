@@ -19,7 +19,7 @@
       <!--</a>-->
     <!--</div>-->
     <div class="cell cell-menu"
-     @click.prevent="showSideBar = !showSideBar">
+     @click.prevent="checkLogin">
       <a href="" class="link">
         <i class="fa fa-user-circle-o"></i>
       </a>
@@ -31,6 +31,8 @@
 
 <script>
   import slideBar from 'components/sidebar/sidebar2'
+  import { mapState } from 'vuex'
+  import { MessageBox } from 'mint-ui'
 
   export default {
     props: ['titleName'],
@@ -39,8 +41,26 @@
         showSideBar: false
       }
     },
+    computed: {
+      ...mapState({
+        isLogin: state => state.user.localUserInfo.loginStatus
+      })
+    },
     methods: {
-      sideBarInit () { // 处理sidebar发来的请求
+      checkLogin () {
+        if (this.isLogin) { // 已登录
+          this.showSideBar = !this.showSideBar
+        } else { // 未登录
+          MessageBox({
+            title: '友情提示',
+            message: '您暂未登录,请登录!',
+            showCancelButton: true
+          }).confirm('').then((action) => {
+            console.log(action, 1)
+          })
+        }
+      },
+      sideBarInit () { // 处理(子组件)sidebar发来的请求
         this.showSideBar = false
       }
     },
