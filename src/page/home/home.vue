@@ -59,12 +59,12 @@
       },
       mounted () {
         // 登录和未登录的toast提示
-        let isLogin = this.$store.state.user.localUserInfo.loginStatus
-        if (isLogin) {
-          this.handelToast('欢迎回来:-D')
-        } else {
-          console.log('未登录过')
-        }
+//        let isLogin = this.$store.state.user.localUserInfo.loginStatus
+//        if (isLogin) {
+//          this.handelToast('欢迎回来:-D')
+//        } else {
+//          console.log('未登录过')
+//        }
       },
       methods: {
         sideBarInit () { // 处理sidebar发来的请求

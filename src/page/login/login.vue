@@ -15,9 +15,8 @@
          :state="$v.form.pwd.required ? 'success' : 'warning'"></mt-field>
         <mt-field label="验证码"
          v-model="form.yzm"
-         :state="$v.form.yzm.sameAsYzm ? 'success' : 'warning'"
-         :attr="{ maxlength: 4}">
-          <img src="../../images/imgvcode.jpg" height="24" width="64">
+         :attr="{ maxlength: 5}">
+          <img :src="captchaPic" height="30" width="120" @click="captcha">
         </mt-field>
         <button class="login-submit"
                 @click="loginHandle($v.form)">登录</button>
@@ -28,6 +27,7 @@
       </div>
     </div>
 
+      <pre v-if="false" style="margin-top:30px">form: {{ $v.form.yzm }}</pre>
       <pre v-if="false" style="margin-top:30px">form: {{ $v.form }}</pre>
     </div>
 
@@ -36,15 +36,16 @@
 
 <script>
   import vHeader from 'components/header/header3'
-  import { required, sameAs } from 'vuelidate/lib/validators'
+  import { required, minLength } from 'vuelidate/lib/validators'
   import { isPhone } from '../../plugins/form'
   import { Toast } from 'mint-ui'
-//  import { axios } from 'axios'
+  import axios from 'axios'
 
   export default {
     data () {
       return {
         canSubmitMark: false,
+        captchaPic: `http://192.168.0.58/weixin/public/index.php/captcha.html`,
         toastMsg: [
           {
             key: 'tel',
@@ -56,13 +57,13 @@
           },
           {
             key: 'yzm',
-            text: '验证码不正确'
+            text: '验证码为6位'
           }
         ],
         form: {
           tel: '',
           pwd: '',
-          currentYzm: 'mjsc',
+//          currentYzm: 'mjsc',
           yzm: ''
         }
       }
@@ -71,7 +72,7 @@
       loginHandle (form) {
         let requireArr = []
         let showErrorMsg
-        const _this = this
+//        const _this = this
         requireArr.push(form.tel)
         requireArr.push(form.pwd)
         requireArr.push(form.yzm)
@@ -86,22 +87,26 @@
           this.handelToast(showErrorMsg)
         } else {
           let result = Object.assign({}, this.form)
+          let url = 'http://192.168.0.58/weixin/public/index.php/index/Auth/login'
           delete result.currentYzm
           const formatData = JSON.stringify(result)
-          this.handelToast('登录成功,控制台查看登录提交信息')
-          console.log(formatData)
-//          axios.post('/url', formatData)
-//            .then(function (res) {
-//              console.log(res)
-//            })
-//            .catch(function (error) {
-//              console.log(error)
-//            })
-          this.$store.dispatch('setUserInfo', {tel: this.form.tel, loginStatus: true})
 
-          setTimeout(function () {
-            _this.$router.go('/')
-          }, 1000)
+          console.log(formatData)
+          axios.post(url, formatData)
+            .then((res) => {
+              console.log(res.data.status)
+              if (res.data.status === 1) {
+                this.$store.dispatch('setUserInfo', {tel: this.form.tel, loginStatus: true})
+              } else if (res.data.status === 0) {
+                this.handelToast('验证码错误')
+              }
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+//          setTimeout(function () {
+//            _this.$router.go('/')
+//          }, 1000)
         }
       },
       handelToast (msg) {
@@ -110,6 +115,10 @@
           position: 'middle',
           duration: 1000
         })
+      },
+      captcha () { // 验证码检测
+        const random = Math.random()
+        this.captchaPic = `http://192.168.0.58/weixin/public/index.php/captcha.html?${random}`
       }
     },
     validations: {
@@ -120,11 +129,13 @@
         pwd: {
           required
         },
-        currentYzm: {
-          required
-        },
+//        currentYzm: {
+//          required
+//        },
         yzm: {
-          sameAsYzm: sameAs('currentYzm')
+          required,
+          minLength: minLength(5)
+//          sameAsYzm: sameAs('currentYzm')
         }
       }
     },

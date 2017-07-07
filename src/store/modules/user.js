@@ -1,4 +1,5 @@
 import Cookie from '../../plugins/cookie'
+import { Toast } from 'mint-ui'
 
 const state = {
   localUserInfo: Cookie.getLocal() || {}
@@ -7,6 +8,13 @@ const actions = {
   setUserInfo ({commit}, res) { // 获取用户信息
     Cookie.setLocal(res)
     commit('SET_USER', res)
+    Toast({
+      message: '欢迎回来:-D',
+      position: 'middle',
+      iconClass: 'icon icon-success',
+      className: 'toast-big',
+      duration: 1000
+    })
   },
   removeUserInfo ({ commit }) { // 注销
     Cookie.removeLocal()

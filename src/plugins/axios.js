@@ -1,5 +1,6 @@
-import axios from 'axios'
-
-export default axios.create({
-  baseURL: process.env.BASE_URL || 'http://127.0.0.15:8666'
-})
+// import axios from 'axios'
+//
+// axios.default.timeout = 5000
+// axios.default.headers.post['Content-Type'] = 'application/x-wwww-form-urlencoded'
+//
+// export default axios

@@ -93,6 +93,8 @@
     }
     .cell{
       .link{
+        display: flex;
+        align-items: center;
         color:#fff;
         & > * {
           color:#fff;

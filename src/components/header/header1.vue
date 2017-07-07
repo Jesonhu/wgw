@@ -95,10 +95,12 @@
     }
     .cell{
       .link{
+        display: flex;
+        align-items: center;
         color:#fff;
         & > * {
           color:#fff;
-          font-size:22px;
+          font-size:27px;
         }
       }
     }
