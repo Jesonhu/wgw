@@ -21,7 +21,7 @@
     <div class="cell cell-menu"
      @click.prevent="showSideBar = !showSideBar">
       <a href="" class="link">
-        <i class="fa fa-bars"></i>
+        <i class="fa fa-user-circle-o"></i>
       </a>
     </div>
 
@@ -98,7 +98,7 @@
         color:#fff;
         & > * {
           color:#fff;
-          font-size:16px;
+          font-size:22px;
         }
       }
     }

@@ -2,23 +2,26 @@
   <div class="sidebar" :class="{active:isActive}">
     <div class="bg-wrap" @click="active"></div>
     <div class="con-wrap">
-      <div class="hd">
-        <div class="link">
-          <div class="user-info">
-            <div class="user-avatar">
-              <img alt="" class="img"
-               src="https://kzcdn.itc.cn/v2/res/post/img/default-avatar.fcf324d9.jpg">
-            </div>
 
-            <span class="content" v-if="!isLogin">未登录</span>
-            <span class="content login" v-if="isLogin">{{user}}</span>
+      <div class="always-bottom">
+        <div class="hd">
+          <div class="link">
+            <div class="user-info">
+              <div class="user-avatar">
+                <img alt="" class="img"
+                 src="https://kzcdn.itc.cn/v2/res/post/img/default-avatar.fcf324d9.jpg">
+              </div>
+
+              <span class="content" v-if="!isLogin">未登录</span>
+              <span class="content login" v-if="isLogin">{{user}}</span>
+            </div>
           </div>
         </div>
+
+        <slide-menu v-if="isLogin"></slide-menu>
       </div>
 
-      <slide-menu></slide-menu>
-
-      <div class="user-status">
+      <div class="user-status always-wrap">
         <div class="login-btn" v-if="isLogin" @click="userHandle">注销</div>
         <div class="no-login-btn" v-if="!isLogin">
           <router-link to="/login" class="link">请登录</router-link>
@@ -158,5 +161,14 @@
   .bg-wrap{
     flex:0 0 25.3%;
     background-color:rgba(0,0,0,.5);
+  }
+
+  /* 一直在底部 */
+  .always-bottom{
+    padding-bottom:64px;
+    min-height: 100vh;
+  }
+  .always-wrap{
+    margin-top:-64px;
   }
 </style>

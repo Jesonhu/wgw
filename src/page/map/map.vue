@@ -47,14 +47,12 @@
     created () {
     },
     mounted () {
-      alert(1)
     },
     methods: {
       handler ({BMap, map}) {
 //        console.log(BMap, map)
         this.lng = 114.420059
         this.lat = 30.518942
-        alert('map', this)
       },
       infoWindowClose () {
         this.show = false

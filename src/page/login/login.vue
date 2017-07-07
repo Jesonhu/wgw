@@ -71,6 +71,7 @@
       loginHandle (form) {
         let requireArr = []
         let showErrorMsg
+        const _this = this
         requireArr.push(form.tel)
         requireArr.push(form.pwd)
         requireArr.push(form.yzm)
@@ -97,6 +98,10 @@
 //              console.log(error)
 //            })
           this.$store.dispatch('setUserInfo', {tel: this.form.tel, loginStatus: true})
+
+          setTimeout(function () {
+            _this.$router.go('/')
+          }, 1000)
         }
       },
       handelToast (msg) {
