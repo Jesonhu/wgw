@@ -29,7 +29,7 @@
   import vHeader from 'components/header/header1'
   import newList from 'components/newList/newList1'
   import axios from 'axios'
-  import BScroll from 'better-scroll'
+//  import BScroll from 'better-scroll'
 
   export default {
     data () {
@@ -80,36 +80,43 @@
       }
     },
     mounted () {
-      const _this = this
+//      const _this = this
       Indicator.open('加载中...')
       // this.wrapperHeight = document.documentElement.clientHeight - this.$refs.wrapper.getBoundingClientRect().top
 //      console.log(this.$route.params)
 //      const id = this.$route.params.id
-      axios.get(`/api/active`)
+      let url = `http://192.168.0.58/weixin/public/index.php/index/news/index`
+      axios.get(url)
         .then((res) => {
           if (res.status === 200) {
             const data = res.data
-            if (data.state === 1) {
-              Indicator.close()
-              this.totalList = data.data
-              this.list = data.data
-              this.list = data.data.slice(0, 5) // 第一次只加载0~4共5条
-              this.$nextTick(() => { // 视图变化后再初始化
-                this.scroll = new BScroll(this.$refs.swrapper, {
-                  click: true
-                })
-                // 松开时触发
-                this.scroll.on('touchend', (pos) => {
-                  if (pos.y < -150) {
-                    if (this.list.length === this.totalList.length) {
-                      return
-                    }
-                    this.scrollText = '松开加载更多'
-                    _this.showLeaveData(this.scroll)
-                  }
-                })
-              })
+            console.log(typeof data)
+            Indicator.close()
+            this.list = data
+            for (let i = 0; i < data.length; i++) {
+              data[i].smallpic = 'http://192.168.0.58/weixin' + data[i].smallpic
             }
+//            if (data.state === 1) {
+//              Indicator.close()
+//              this.totalList = data.data
+//              this.list = data.data
+//              this.list = data.data.slice(0, 5) // 第一次只加载0~4共5条
+//              this.$nextTick(() => { // 视图变化后再初始化
+//                this.scroll = new BScroll(this.$refs.swrapper, {
+//                  click: true
+//                })
+//                // 松开时触发
+//                this.scroll.on('touchend', (pos) => {
+//                  if (pos.y < -150) {
+//                    if (this.list.length === this.totalList.length) {
+//                      return
+//                    }
+//                    this.scrollText = '松开加载更多'
+//                    _this.showLeaveData(this.scroll)
+//                  }
+//                })
+//              })
+//            }
           }
         })
         .catch((err) => {

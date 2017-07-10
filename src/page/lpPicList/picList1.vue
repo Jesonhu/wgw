@@ -7,28 +7,29 @@
         <ul class="common-list"
          :class="isShowList ? 'list' : 'block'">
             <li class="item"
-             v-for="(item,index) in 10">
+             v-for="(item,index) in lpList">
                 <router-link class="link"
-                 :to="{name: 'fullPic', query: {id: index}}" >
+                 :to="{name: 'fullPic', query: {id: item.id}}" >
                     <div class="img-wrap">
-                        <img class="img" src="http://kzcdn.itc.cn/res/post/images/bgimage/1.png?v=4.7" alt="">
+                        <img class="img"
+                         :src="item.smallpic" alt="item.title">
                     </div>
                     <!-- list显示 -->
                     <div class="con-bd "
                      v-show="isShowList">
-                        <p class="name">最新楼盘{{index}}</p>
-                        <p class="time">2017-6-6</p>
+                        <p class="name">{{item.title}}</p>
+                        <p class="time">{{item.addtime | shortTime}}</p>
                         <p class="view"><i class="fa fa-eye"></i>5</p>
                         <i class="arrow fa fa-chevron-right"></i>
                     </div>
                     <!-- block -->
                     <div class="con-bd"
                          v-show="!isShowList">
-                      <p class="name">block最新楼盘{{index}}</p>
+                      <p class="name">{{item.title}}</p>
                     </div>
                     <div class="inof-wrap"
                      v-show="!isShowList">
-                      <p class="time"><i class="fa fa-calendar-minus-o"></i>2017-6-6</p>
+                      <p class="time"><i class="fa fa-calendar-minus-o"></i>{{item.addtime | shortTime}}</p>
                       <p class="view"><i class="fa fa-eye"></i>5</p>
                     </div>
                 </router-link>
@@ -47,12 +48,27 @@
 <script>
     import vHeader from 'components/header/header1'
     import banner from 'components/banner/staticBanner1'
+    import axios from 'axios'
 
     export default {
       data () {
         return {
-          isShowList: true
+          isShowList: true,
+          lpList: []
         }
+      },
+      mounted () {
+        const url = 'http://192.168.0.58/weixin/public/index.php/index/building/index'
+        axios.get(url)
+          .then((res) => {
+            if (res.status === 200) {
+              this.addBaseUrl(res.data)
+              this.lpList = res.data
+            }
+          })
+          .catch((err) => {
+            console.log(err)
+          })
       },
       methods: {
         changeStyle () {
@@ -62,6 +78,19 @@
             // 显示 list
           }
           this.isShowList = !this.isShowList
+        },
+        addBaseUrl (arr) {
+          const picUrl = 'http://192.168.0.58/weixin'
+          for (let i = 0; i < arr.length; i++) {
+            arr[i].smallpic = picUrl + '/' + arr[i].smallpic
+          }
+        }
+      },
+      filters: {
+        shortTime (val) {
+          let arr = []
+          arr = val.split(' ')
+          return arr[0]
         }
       },
       components: {
@@ -136,6 +165,7 @@
         .link{
           display: block;
           position: relative;
+          border:1px solid rgba(0,0,0,.3);
           .img{
             display: block;
             width:100%;
@@ -152,9 +182,9 @@
           justify-content: space-between;
           font-size:13px;
           & > * {
-            color:#fff;
+            color:#333;
             .fa{
-              color:#fff;
+              color:#333;
             }
           }
           i.fa{

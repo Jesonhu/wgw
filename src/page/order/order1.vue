@@ -96,6 +96,7 @@
          @click="submitClickHandle($v.form)">预约</button>
       </div>
 
+      <div v-if="false" class="" @click="showDate">1111</div>
       <pre v-if="false">表单: {{ $v.form }}</pre>
 
     </form>
@@ -109,6 +110,7 @@
   import { isPhone, isUserName } from '../../plugins/form'
   import { formatDate } from '../../plugins/date'
   import vSwitch from 'components/switch/switch'
+  import axios from 'axios'
 
   export default {
     data () {
@@ -146,8 +148,16 @@
       submit () {
         if (this.canSubmitMark) {
           const formatData = JSON.stringify(this.form)
-          this.handelToast('预约成功,控制台查看发送的数据')
-          console.log(formatData)
+          const url = 'http://192.168.0.58/weixin/public/index.php/index/Auth/login'
+//          this.handelToast('预约成功,控制台查看发送的数据')
+//          console.log(formatData)
+          axios.post(url, formatData)
+            .then((res) => {
+              console.log(res)
+            })
+            .catch((err) => {
+              console.log(err)
+            })
         }
       },
       submitClickHandle (form) {
@@ -213,8 +223,20 @@
         const result = formatDate(value, 'yyyy-MM-dd hh:mm')
         this.form.dateTime = result
       },
-      dateTimeTouch (val) {
-        console.log(val)
+      lastData () {
+        let nowDate = new Date()
+        // 设置日期为2018-1-1 0:0:0
+//        nowDate.setFullYear(2018)
+//        nowDate.setMonth(1)
+//        nowDate.setDate(1)
+//        nowDate.setHours(0)
+//        nowDate.setMinutes(0)
+//        nowDate.setSeconds(0)
+//        nowDate.setMilliseconds(0)
+        return nowDate
+      },
+      showDate () {
+        console.log(this.lastData())
       }
     },
     validations () {
@@ -262,7 +284,7 @@
   $museTthemColor: #009688;
 
   .order-wrap{
-    margin-top:2rem;
+    margin-top:0rem;
     position: relative;
     min-height: 100vh;
   }
@@ -401,7 +423,7 @@
     align-items: center;
     justify-content: center;
     top:0;
-    right:30px;
+    right:0;
     width:30px;
     height:100%;
     background:transparent;

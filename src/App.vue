@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <transition :name="transitionName">
+    <transition :name="'page' + (direction === 'forward' ? 'in' : 'out')">
       <router-view class="router-view"></router-view>
     </transition>
   </div>
@@ -8,6 +8,7 @@
 
 <script>
   import tabbar from 'components/bottom-nav/nav1'
+  import { mapState } from 'vuex'
 
   export default {
     name: 'app',
@@ -28,6 +29,11 @@
 //        const fromDepth = from.path.split('/').length
         this.transitionName = toPathLen < fromPathLen ? 'page-out' : 'page-in'
       }
+    },
+    computed: {
+      ...mapState({
+        direction: state => state.routeDirection.direction
+      })
     },
     methods: {
       removeEmpty (arr) {

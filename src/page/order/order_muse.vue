@@ -172,7 +172,7 @@
           this.canSubmitMark = false // 控制是否submit()可以提交
           for (let i = 0; i < requireArr.length; i++) { // 获取具体哪个验证有问题
             if (requireArr[i]['$invalid']) {
-              showErrorMsg = this.toastMesg[i]['text']
+              showErrorMsg = this.toastMesg[i].text
               break
             }
           }

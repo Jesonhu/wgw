@@ -223,4 +223,19 @@ image[lazy=loading] {
   margin: auto;
 }
 
+/* 文章详情 */
+.content{
+  .a-image{
+    display:block;
+    img{
+      display: block;
+      max-width: 100%;
+    }
+  }
+  img{
+    display: block;
+    max-width: 100%;
+  }
+}
+
 @import 'mixin/1px';

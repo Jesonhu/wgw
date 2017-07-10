@@ -14,7 +14,7 @@
           <mt-field label="图片验证码"
            v-model="form.picYzm"
            :state="$v.form.picYzm.sameAsYzm ? 'success' : 'warning'">
-            <img src="../../images/imgvcode.jpg" height="24" width="64">
+            <img :src="captchaPic" height="30" width="120" @click="captcha">
           </mt-field>
           <mt-field label="短信验证码"
            v-model="form.msgYzm"
@@ -66,6 +66,7 @@
             text: '密码格式不正确'
           }
         ],
+        captchaPic: `http://192.168.0.58/weixin/public/index.php/captcha.html`,
         form: {
           tel: '',
           currentYzm: 'mjsc',
@@ -94,11 +95,12 @@
           this.handelToast(showErrorMsg)
         } else {
           let result = Object.assign({}, this.form)
+          const url = '/register'
           delete result.currentYzm
           const formatData = JSON.stringify(result)
-          this.handelToast('注册成功,控制台查看注册提交信息')
+//          this.handelToast('注册成功,控制台查看注册提交信息')
           console.log(formatData)
-          axios.post('/register', formatData)
+          axios.post(url, formatData)
             .then((res) => {
               console.log(res)
             })
@@ -113,6 +115,10 @@
           position: 'middle',
           duration: 1000
         })
+      },
+      captcha () { // 验证码检测
+        const random = Math.random()
+        this.captchaPic = `http://192.168.0.58/weixin/public/index.php/captcha.html?${random}`
       }
     },
     validations: {

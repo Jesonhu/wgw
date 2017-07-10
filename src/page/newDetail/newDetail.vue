@@ -1,24 +1,25 @@
 <template>
   <div class="new-detail1" ref="newDetail">
       <!-- 顶部导航 -->
-      详情页面
       <v-header
        :titleName="titleName"
        :hasBg="true"></v-header>
-      <div class="page-count" v-if="!loading">
-        <div class="page-hd">
-          <h2 class="title">{{newDetail.name}}</h2>
-          <p class="page-attr">
-            <span class="time">{{newDetail.pubTime}}</span>
-            <span class="look">阅读{{newDetail.lookCount}}</span>
-          </p>
-        </div>
-        <div class="bd">
-          <!-- 摘要 -->
-          <v-summary></v-summary>
+      <div class="page-count" v-if="!loading" ref="wrap">
+        <div class="main">
+          <div class="page-hd">
+            <h2 class="title">{{newDetail.title}}</h2>
+            <p class="page-attr">
+              <span class="time">{{newDetail.addtime}}</span>
+              <span class="look">阅读{{newDetail.lookCount || 233}}</span>
+            </p>
+          </div>
+          <div class="bd">
+            <!-- 摘要
+            <v-summary></v-summary>-->
 
-          {{newDetail.info}}
+            <div class="content" v-html="newDetail.content"></div>
 
+          </div>
         </div>
       </div>
     </div>
@@ -27,6 +28,7 @@
 <script>
   import vHeader from 'components/header/header3'
   import axios from 'axios'
+  import BScroll from 'better-scroll'
   // 组件
   // 摘要
   import summary from 'components/summary/summary1'
@@ -69,15 +71,22 @@
 //          }
 //        })
         const id = this.$route.query.id
-        axios.get(`/api/detail?id=${id}`)
+        const url = `http://192.168.0.58/weixin/public/index.php/index/news/detail/id/${id}`
+        axios.get(url)
           .then((res) => {
             if (res.status === 200) {
               const data = res.data
-              if (data.state === 1) {
-                this.loading = false
-                this.newDetail = data.data
-                this.titleName = data.data.name
-              }
+//              console.log(data)
+              this.loading = false
+              this.newDetail = data
+              this.titleName = data.title
+              // init BScroll
+              const _this = this
+              setTimeout(() => {
+                _this.scroll = new BScroll(_this.$refs.wrap, {
+                  click: true
+                })
+              }, 500)
             } else {
               this.error = '数据加载失败，请重试'
             }
@@ -112,8 +121,13 @@
     }
   }
   .page-count{
-    margin-top: 1.9rem;
-    padding:0 14px 0 14px;
+    padding:1.9rem 14px 0 14px;
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    width:100%;
+    overflow: hidden;
     .title{
       font-weight: 100;
       font-size:20px;
@@ -129,6 +143,14 @@
     .bd{
       margin-top:25px;
       font-size:12px;
+      .content{
+        padding-bottom:40px;
+
+        /* 文章详情样式 */
+        .a-image{
+          display:block;
+        }
+      }
     }
   }
 </style>

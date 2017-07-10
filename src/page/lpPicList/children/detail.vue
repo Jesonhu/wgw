@@ -3,18 +3,25 @@
   <div style="display: relative;width:100%;height:100%;padding-top:1.919rem">
     <!-- 顶部导航 -->
   <v-header :hasBg="true" :titleName="name"></v-header>
-  <swiper :options="swiperOption" class="swiper-box">
-    <swiper-slide class="swiper-item"
-     v-for="item in picList"
-     :key="item">
-      <a href="" class="link">
-        <img alt="" class="img"
-         :src="item.pic">
-      </a>
-    </swiper-slide>
-    <!-- 指示按钮 -->
-    <div class="swiper-pagination" slot="pagination"></div>
-  </swiper>
+
+    <!-- swiper -->
+  <!--<swiper :options="swiperOption" class="swiper-box">-->
+    <!--<swiper-slide class="swiper-item"-->
+     <!--v-for="item in picList"-->
+     <!--:key="item">-->
+      <!--<a href="" class="link">-->
+        <!--<img alt="" class="img"-->
+         <!--:src="item.pic">-->
+      <!--</a>-->
+    <!--</swiper-slide>-->
+    <!--&lt;!&ndash; 指示按钮 &ndash;&gt;-->
+    <!--<div class="swiper-pagination" slot="pagination"></div>-->
+  <!--</swiper>-->
+
+    <!-- 内容 -->
+    <div class="con-wrap">
+      <div class="main-con" v-html="detail"></div>
+    </div>
   </div>
 </template>
 
@@ -35,23 +42,20 @@
           paginationType: 'fraction' // xx/count 导航
         },
         name: '',
-        picList: []
+        picList: [],
+        detail: ''
       }
     },
     mounted () {
       const queryId = this.$route.query.id
-      axios.get(`/api/lpshow/detail`, {
-        params: {
-          id: queryId
-        }
-      })
+      const url = `http://192.168.0.58/weixin/public/index.php/index/building/detail/id/${queryId}`
+      axios.get(url)
         .then((res) => {
           if (res.status === 200) {
             const data = res.data
-            if (data.state === 1) {
-              this.name = data.data.name
-              this.picList = data.data.picList
-            }
+            this.name = data.title
+            this.detail = data.content
+            this.picAddUrl()
           }
         })
         .catch((err) => {
@@ -61,6 +65,18 @@
     computed: {
       swiper () {
         return (this.$children.find(children => children.options.name === 'currentSwiper').swiper)
+      }
+    },
+    methods: {
+      picAddUrl () {
+        const doc = document
+        let oImgs = doc.querySelectorAll('.main-con img')
+        for (let i = 0; i < oImgs.length; i++) {
+          const defaultUrl = oImgs[i].src
+          oImgs[i].src = `http://192.168.0.58/weixin/${defaultUrl}`
+          console.log(defaultUrl)
+          console.log(1)
+        }
       }
     },
     components: {

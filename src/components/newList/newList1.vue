@@ -7,18 +7,18 @@
        @click="click($event)">
         <div class="img-wrap">
           <img class="img"
-           v-lazy="item.listPic"
-           :alt="item.name">
+           :src="`${item.smallpic}`"
+           :alt="item.title">
         </div>
         <div class="bd">
-          <h3 class="title">{{item.name}}</h3>
-          <p class="time">{{item.pubTime}}</p>
+          <h3 class="title">{{item.title}}</h3>
+          <p class="time">{{item.addtime}}</p>
           <p class="stat">
             <span class="look">
-              <i class="fa fa-eye"></i>{{item.lookCount}}
+              <i class="fa fa-eye"></i>{{item.lookCount || 233}}
             </span>
             <span class="like" @click.prevent="addLike">
-              <i class="fa fa-heart-o"></i>{{item.likeCount}}
+              <i class="fa fa-heart-o"></i>{{item.likeCount || 233}}
             </span>
           </p>
         </div>
@@ -45,7 +45,8 @@
         // 懒加载
         imgObj: {
           error: 'http://fuss10.elemecdn.com/7/85/e478e4b26af74f4539c79f31fde80jpeg.jpeg'
-        }
+        },
+        basePic: 'http:/192.168.0.58/weixin'
       }
     },
     methods: {
