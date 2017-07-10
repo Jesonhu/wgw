@@ -159,6 +159,7 @@
     background-size:100%;
   }
   .login{
+    position: relative;
     height:100vh;
   }
   .bd-wrap{

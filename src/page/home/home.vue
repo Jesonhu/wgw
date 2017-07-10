@@ -93,6 +93,9 @@
 
 <style lang="scss">
   .home {
+    margin-top: 0rem;
+    position: relative;
+    min-height: 100vh;
     &.bg{
 
     }

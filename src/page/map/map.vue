@@ -78,6 +78,7 @@
 <style>
   .map-wrap{
     height:100vh;
+    position: relative;
   }
   .bm-view {
     z-index: 1;

@@ -1,47 +1,49 @@
 <template>
     <div class="pic-list-wrap">
-        <v-header :titleName="'楼盘展示'"></v-header>
+        <div class="con-wrap">
+          <v-header :titleName="'楼盘展示'"></v-header>
 
-        <banner></banner>
+          <banner></banner>
 
-        <ul class="common-list"
-         :class="isShowList ? 'list' : 'block'">
-            <li class="item"
-             v-for="(item,index) in lpList">
-                <router-link class="link"
-                 :to="{name: 'fullPic', query: {id: item.id}}" >
-                    <div class="img-wrap">
-                        <img class="img"
-                         :src="item.smallpic" alt="item.title">
-                    </div>
-                    <!-- list显示 -->
-                    <div class="con-bd "
-                     v-show="isShowList">
+          <ul class="common-list"
+           :class="isShowList ? 'list' : 'block'">
+              <li class="item"
+               v-for="(item,index) in lpList">
+                  <router-link class="link"
+                   :to="{name: 'fullPic', query: {id: item.id}}" >
+                      <div class="img-wrap">
+                          <img class="img"
+                           :src="item.smallpic" alt="item.title">
+                      </div>
+                      <!-- list显示 -->
+                      <div class="con-bd "
+                       v-show="isShowList">
+                          <p class="name">{{item.title}}</p>
+                          <p class="time">{{item.addtime | shortTime}}</p>
+                          <p class="view"><i class="fa fa-eye"></i>5</p>
+                          <i class="arrow fa fa-chevron-right"></i>
+                      </div>
+                      <!-- block -->
+                      <div class="con-bd"
+                           v-show="!isShowList">
                         <p class="name">{{item.title}}</p>
-                        <p class="time">{{item.addtime | shortTime}}</p>
+                      </div>
+                      <div class="inof-wrap"
+                       v-show="!isShowList">
+                        <p class="time"><i class="fa fa-calendar-minus-o"></i>{{item.addtime | shortTime}}</p>
                         <p class="view"><i class="fa fa-eye"></i>5</p>
-                        <i class="arrow fa fa-chevron-right"></i>
-                    </div>
-                    <!-- block -->
-                    <div class="con-bd"
-                         v-show="!isShowList">
-                      <p class="name">{{item.title}}</p>
-                    </div>
-                    <div class="inof-wrap"
-                     v-show="!isShowList">
-                      <p class="time"><i class="fa fa-calendar-minus-o"></i>{{item.addtime | shortTime}}</p>
-                      <p class="view"><i class="fa fa-eye"></i>5</p>
-                    </div>
-                </router-link>
-            </li>
-        </ul>
+                      </div>
+                  </router-link>
+              </li>
+          </ul>
 
-        <div class="toggle-style-bar" @click="changeStyle">
-          <i class="fa fa-th-large"
-           :class="isShowList ? 'fa-th-list' : 'fa-th-large' "></i>
+          <div class="toggle-style-bar" @click="changeStyle">
+            <i class="fa fa-th-large"
+             :class="isShowList ? 'fa-th-list' : 'fa-th-large' "></i>
+          </div>
+
+          <!--<router-view></router-view>-->
         </div>
-
-        <!--<router-view></router-view>-->
     </div>
 </template>
 
@@ -101,8 +103,15 @@
 </script>
 
 <style lang="scss" scoped>
+    .pic-list-wrap{
+      min-height: 100vh;
+    }
     .common-list{
         padding: 10px;
+    }
+    .con-wrap{
+      position: relative;
+      min-height: 100vh;
     }
     .list{
       .item{

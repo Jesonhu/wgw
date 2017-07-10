@@ -12,7 +12,8 @@ export default {
   },
   mutations: {
     UPDATE_DIRECTION (state, res) {
-      state.direction = res.routeDirection.
+      // console.log(res)
+      state.direction = res.direction
     }
   }
 }

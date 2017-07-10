@@ -1,9 +1,10 @@
 <template>
   <!--swiper全屏-->
-  <div style="display: relative;width:100%;height:100vh;padding-top:1.919rem">
+  <div class="hx-detail-wrap">
     <!-- 顶部导航 -->
   <v-header :hasBg="true" :titleName="title"></v-header>
-  <swiper :options="swiperOption" class="swiper-box">
+  <div class="main">
+    <swiper :options="swiperOption" class="swiper-box">
     <swiper-slide class="swiper-item"
      v-for="(item,index) in picList"
      :key="item">
@@ -19,6 +20,7 @@
     <!-- 指示按钮 -->
     <div class="swiper-pagination vertical" slot="pagination"></div>
   </swiper>
+  </div>
   </div>
 </template>
 
@@ -88,6 +90,16 @@
   }
   body {
     background: #eee;
+  }
+  .hx-detail-wrap{
+    position: relative;
+    width:100%;
+    height:100vh;
+    padding-top:1.919rem;
+    .main{
+      width:100%;
+      height:calc(100vh - 1.919rem);
+    }
   }
   .swiper-box {
     width: 100%;
