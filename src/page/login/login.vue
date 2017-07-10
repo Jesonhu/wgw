@@ -72,7 +72,7 @@
       loginHandle (form) {
         let requireArr = []
         let showErrorMsg
-//        const _this = this
+
         requireArr.push(form.tel)
         requireArr.push(form.pwd)
         requireArr.push(form.yzm)
@@ -91,12 +91,13 @@
           delete result.currentYzm
           const formatData = JSON.stringify(result)
 
-          console.log(formatData)
+//          console.log(formatData)
           axios.post(url, formatData)
             .then((res) => {
-              console.log(res.data.status)
+//              console.log(res.data.status)
               if (res.data.status === 1) {
                 this.$store.dispatch('setUserInfo', {tel: this.form.tel, loginStatus: true})
+                this.autoPrevPage()
               } else if (res.data.status === 0) {
                 this.handelToast('验证码错误')
               }
@@ -104,9 +105,6 @@
             .catch((err) => {
               console.log(err)
             })
-//          setTimeout(function () {
-//            _this.$router.go('/')
-//          }, 1000)
         }
       },
       handelToast (msg) {
@@ -119,6 +117,12 @@
       captcha () { // 验证码检测
         const random = Math.random()
         this.captchaPic = `http://192.168.0.58/weixin/public/index.php/captcha.html?${random}`
+      },
+      autoPrevPage () {
+        const _this = this
+        setTimeout(() => {
+          _this.$router.go(-1)
+        }, 500)
       }
     },
     validations: {

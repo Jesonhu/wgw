@@ -54,6 +54,7 @@
         userHandle () {
           // 注销
           this.$store.dispatch('removeUserInfo')
+          this.isActive = false
         }
       },
       computed: {

@@ -77,10 +77,10 @@ export default new Router({
       path: '/join',
       component: RegisterLogin
     },
-    {
+    { // 预约看房
       path: '/order',
       component: Order
-    }, // vue-validate验证测试
+    },
     { // 全景图页面
       path: '/fullview',
       component: FullView

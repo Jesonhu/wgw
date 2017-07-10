@@ -1,6 +1,6 @@
 <template>
   <div class="hxpic-list">
-    <v-header :titleName="'户型展示'"></v-header:>
+    <v-header :titleName="'户型展示'"></v-header>
 
     <div class="header">
       <img src="http://vcl-pictures.qiniucdn.com/FuQF9yMlATjxAaqcOXhYnkVLHlXv" alt="" class="img">

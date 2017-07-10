@@ -12,7 +12,6 @@ const actions = {
       message: '欢迎回来:-D',
       position: 'middle',
       iconClass: 'icon icon-success',
-      className: 'toast-big',
       duration: 1000
     })
   },

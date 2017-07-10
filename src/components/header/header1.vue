@@ -51,17 +51,18 @@
         if (this.isLogin) { // 已登录
           this.showSideBar = !this.showSideBar
         } else { // 未登录
-          MessageBox({
-            title: '友情提示',
-            message: '您暂未登录,请登录!',
-            showCancelButton: true
-          }).confirm('').then((action) => {
-            console.log(action, 1)
+          MessageBox.confirm('您暂未登录,请登录!', '友情提示').then(() => {
+            this.toLoginPage() // mint-ui这里有个坑，直接编程式导航不能跳转
+          }).catch(function () {
+            // catch 点击确定也会走
           })
         }
       },
       sideBarInit () { // 处理(子组件)sidebar发来的请求
         this.showSideBar = false
+      },
+      toLoginPage () {
+        this.$router.push({path: '/login'})
       }
     },
     components: {
