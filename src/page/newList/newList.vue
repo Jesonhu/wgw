@@ -100,7 +100,7 @@
                 })
                 // 松开时触发
                 this.scroll.on('touchend', (pos) => {
-                  if (pos.y < -320) {
+                  if (pos.y < -150) {
                     if (this.list.length === this.totalList.length) {
                       return
                     }

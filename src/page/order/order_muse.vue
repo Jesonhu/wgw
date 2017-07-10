@@ -150,8 +150,8 @@
       submit () {
         if (this.canSubmitMark) {
           const formatData = JSON.stringify(this.form)
-          this.handelToast('预约成功,控制台查看发送的数据')
-          console.log(formatData)
+//          this.handelToast('预约成功,控制台查看发送的数据')
+//          console.log(formatData)
         }
       },
       submitClickHandle (form) {

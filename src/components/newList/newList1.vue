@@ -104,6 +104,7 @@
         }
       }
       .bd{
+        position: relative;
         flex:1;
         margin-left:10px;
         padding:15px;
@@ -135,6 +136,11 @@
         .stat{
           display:flex;
           justify-content: space-between;
+          position: absolute;
+          left:0;
+          bottom: 5px;
+          width:100%;
+          padding-right:15px;
         }
       }
     }
