@@ -82,20 +82,17 @@
     mounted () {
 //      const _this = this
       Indicator.open('加载中...')
-      // this.wrapperHeight = document.documentElement.clientHeight - this.$refs.wrapper.getBoundingClientRect().top
-//      console.log(this.$route.params)
-//      const id = this.$route.params.id
       let url = `http://192.168.0.58/weixin/public/index.php/index/news/index`
       axios.get(url)
         .then((res) => {
           if (res.status === 200) {
             const data = res.data
-            console.log(typeof data)
             Indicator.close()
             this.list = data
             for (let i = 0; i < data.length; i++) {
               data[i].smallpic = 'http://192.168.0.58/weixin' + data[i].smallpic
             }
+            // 上拉加载
 //            if (data.state === 1) {
 //              Indicator.close()
 //              this.totalList = data.data

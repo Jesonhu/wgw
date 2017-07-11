@@ -73,9 +73,9 @@
         let oImgs = doc.querySelectorAll('.main-con img')
         for (let i = 0; i < oImgs.length; i++) {
           const defaultUrl = oImgs[i].src
-          oImgs[i].src = `http://192.168.0.58/weixin/${defaultUrl}`
-          console.log(defaultUrl)
           console.log(1)
+          console.log(defaultUrl)
+          oImgs[i].src = `http://192.168.0.58/weixin/${defaultUrl}`
         }
       }
     },
