@@ -76,7 +76,6 @@
         requireArr.push(form.tel)
         requireArr.push(form.pwd)
         requireArr.push(form.yzm)
-
         if (form.$invalid) {
           for (let i = 0; i < requireArr.length; i++) {
             if (requireArr[i].$invalid) {
@@ -87,12 +86,10 @@
           this.handelToast(showErrorMsg)
         } else {
           let result = Object.assign({}, this.form)
-          let url = 'http://192.168.0.58/weixin/public/index.php/index/Auth/login'
           delete result.currentYzm
           const formatData = JSON.stringify(result)
-
 //          console.log(formatData)
-          axios.post(url, formatData)
+          axios.post(this.host.user.login, formatData)
             .then((res) => {
 //              console.log(res.data.status)
               if (res.data.status === 1) {

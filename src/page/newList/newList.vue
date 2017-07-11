@@ -34,7 +34,7 @@
   export default {
     data () {
       return {
-        headerName: ['学生生活', '青春不打烊', '一点通', '思想潮'],
+        headerName: ['最新资讯', '企业动态', '企业活动', '公告'],
         list: {},
         totalList: {},
         scrollText: '上拉加载更多',

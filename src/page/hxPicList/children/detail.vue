@@ -10,7 +10,7 @@
      :key="item">
       <a href="" class="link">
         <img alt="" class="img"
-         :src="item.pic">
+         :src="item">
       </a>
       <div class="item-con">
         <p>CS-001    一室一厅一卫,{{index+1}}</p>
@@ -47,25 +47,21 @@
           }
         },
         picList: [],
-        title: ''
+        title: '',
+        content: ''
       }
     },
     mounted () {
       Indicator.open('加载中...')
       const queryId = this.$route.query.id
-      axios.get(`/api/lpshow/detail`, {
-        params: {
-          id: queryId
-        }
-      })
+      const url = `${this.host.hx.detail}/${queryId}`
+      axios.get(url)
         .then((res) => {
           if (res.status === 200) {
             const data = res.data
-            if (data.state === 1) {
-              Indicator.close()
-              this.picList = data.data.picList
-              this.title = data.data.name
-            }
+            Indicator.close()
+            this.title = data.title
+            this.picList = this.addBaseUrl(data.picList)
           }
         })
         .catch((err) => {
@@ -75,6 +71,19 @@
     computed: {
       swiper () {
         return (this.$children.find(children => children.options.name === 'currentSwiper').swiper)
+      }
+    },
+    methods: {
+      addBaseUrl (arr) {
+        const picUrl = 'http://192.168.0.58/weixin'
+        for (let i = 0; i < arr.length; i++) {
+          if (!typeof arr[i].smallpic === undefined) {
+            arr[i].smallpic = picUrl + '/' + arr[i].smallpic
+            return
+          }
+          arr[i] = picUrl + arr[i]
+        }
+        return arr
       }
     },
     components: {

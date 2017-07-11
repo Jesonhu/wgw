@@ -106,7 +106,7 @@
 <script type="text/ecmascript-6">
   import vHeader from 'components/header/header3'
   import { required } from 'vuelidate/lib/validators'
-  import { Toast } from 'mint-ui'
+  import { Toast, MessageBox } from 'mint-ui'
   import { isPhone, isUserName } from '../../plugins/form'
   import { formatDate } from '../../plugins/date'
   import vSwitch from 'components/switch/switch'
@@ -148,12 +148,13 @@
       submit () {
         if (this.canSubmitMark) {
           const formatData = JSON.stringify(this.form)
-          const url = 'http://192.168.0.58/weixin/public/index.php/index/Auth/login'
-//          this.handelToast('预约成功,控制台查看发送的数据')
-//          console.log(formatData)
-          axios.post(url, formatData)
+          axios.post(this.host.order.order, formatData)
             .then((res) => {
-              console.log(res)
+              if (res.data.status === 1) {
+                this.handleMessageBox('恭喜，预约成功')
+              } else if (res.data.status === 0) {
+                this.handleMessageBox('抱歉，预约失败')
+              }
             })
             .catch((err) => {
               console.log(err)
@@ -214,7 +215,13 @@
           duration: 1000
         })
       },
-
+      handleMessageBox (msg) {
+        MessageBox({
+          title: '提示',
+          message: msg,
+          showCancelButton: true
+        })
+      },
       // mint picker
       open (picker) {
         this.$refs[picker].open()

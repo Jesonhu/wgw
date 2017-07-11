@@ -20,7 +20,7 @@
                 </p>
                 <p class="desc">{{house.desc}}</p>
                 <router-link  class="link" ref="sub-menu" v-show="house.mark || false"
-                 :to="{name: 'hxDetail', query: {id: itemIndex, pid: houseIndex}}">
+                 :to="{name: 'hxDetail', query: {id: itemIndex+1, pid: houseIndex+1}}">
                   <span class="img"></span>
                   <span class="text">户型图</span>
                 </router-link>

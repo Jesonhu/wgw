@@ -21,6 +21,7 @@ import './style/muse.scss'
 import Vuelidate from 'vuelidate' // 表单验证
 import BaiduMap from 'vue-baidu-map' // 百度地图
 import 'babel-polyfill'
+import host from './config/host'
 
 if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', function () {
@@ -54,6 +55,8 @@ Vue.use(VueLazyload, {
     }
   }
 })
+
+Vue.prototype.host = host
 
 // 路由切换效果
 const history = window.sessionStorage
