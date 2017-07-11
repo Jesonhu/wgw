@@ -14,7 +14,6 @@
     name: 'app',
     data () {
       return {
-        transitionName: 'page-in'
       }
     },
     // dynamically set transition based on route change

@@ -12,7 +12,7 @@ export default {
   },
   mutations: {
     UPDATE_DIRECTION (state, res) {
-      // console.log(res)
+      console.log()
       state.direction = res.direction
     }
   }
