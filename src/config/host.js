@@ -21,6 +21,10 @@ const host = {
     reg: ``,
     reset: ''
   },
+  news: {
+    list: `${domain}/weixin/public/index.php/index/news/index`,
+    detail: `${domain}/weixin/public/index.php/index/news/detail/id/`
+  },
   order: { // 预约看房
     order: `${domain}/weixin/public/index.php/index/booking/book`
   }

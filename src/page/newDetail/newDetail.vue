@@ -60,18 +60,8 @@
       fetchData () {
         this.error = this.post = null
         this.loading = true
-        // replace getPost with your data fetching util / API wrapper
-//        getPost(this.$route.params.id, (err, post) => {
-//          console.log(this.$route.params.id)
-//          this.loading = false
-//          if (err) {
-//            this.error = err.toString()
-//          } else {
-//            this.post = post
-//          }
-//        })
         const id = this.$route.query.id
-        const url = `http://192.168.0.58/weixin/public/index.php/index/news/detail/id/${id}`
+        const url = `${this.host.news.detail}${id}`
         axios.get(url)
           .then((res) => {
             if (res.status === 200) {

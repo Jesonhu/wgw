@@ -14,10 +14,10 @@ import 'swiper/dist/css/swiper.css'
 import './style/diy_swiper.scss'
 import './style/mint_ui.scss'
 import 'font-awesome/css/font-awesome.min.css'
-import MuseUI from 'muse-ui'
-import 'muse-ui/dist/muse-ui.css'
-import 'muse-ui/dist/theme-teal.min.css' // 使用 carbon 主题
-import './style/muse.scss'
+// import MuseUI from 'muse-ui'
+// import 'muse-ui/dist/muse-ui.css'
+// import 'muse-ui/dist/theme-teal.min.css' // 使用 carbon 主题
+// import './style/muse.scss'
 import Vuelidate from 'vuelidate' // 表单验证
 import BaiduMap from 'vue-baidu-map' // 百度地图
 import 'babel-polyfill'
@@ -29,7 +29,7 @@ if ('addEventListener' in document) {
   })
 }
 
-Vue.use(MuseUI)
+// Vue.use(MuseUI)
 Vue.use(MintUI)
 Vue.use(VueAwesomeSwiper)
 Vue.use(Vuelidate)

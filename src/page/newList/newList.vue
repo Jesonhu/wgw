@@ -82,8 +82,7 @@
     mounted () {
 //      const _this = this
       Indicator.open('加载中...')
-      let url = `http://192.168.0.58/weixin/public/index.php/index/news/index`
-      axios.get(url)
+      axios.get(this.host.news.list)
         .then((res) => {
           if (res.status === 200) {
             const data = res.data

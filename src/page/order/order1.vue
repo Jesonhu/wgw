@@ -305,6 +305,10 @@
   }
   .form-group{
     margin:10px;
+    .form__label,
+    .label-block{
+      font-size:12px;
+    }
     /* 留言 */
     .mod-form-textarea{
       display: inline-block;
@@ -321,6 +325,7 @@
       transition: border 0.2s cubic-bezier(0.45, 0.05, 0.55, 0.95), background 0.2s cubic-bezier(0.45, 0.05, 0.55, 0.95), box-shadow 0.2s cubic-bezier(0.45, 0.05, 0.55, 0.95);
     }
     &.inline-group{
+      padding-top:10px;
       .pickers-wrap{
         display:flex;
         flex-wrap: nowrap;
