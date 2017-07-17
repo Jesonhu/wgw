@@ -47,7 +47,6 @@
         this.$emit('handleBack')
       },
       checkLogin () { // 登录后可以点击未登录点击选择是否登录
-        console.log(1)
         if (this.isLogin) {
           this.showSideBar = !this.showSideBar
         } else {

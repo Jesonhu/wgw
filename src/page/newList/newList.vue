@@ -77,6 +77,13 @@
         this.$nextTick(() => {
           scrollObj.refresh()
         })
+      },
+      addBaseUrl (arr) {
+        const picUrl = 'http://192.168.0.58/weixin'
+        for (let i = 0; i < arr.length; i++) {
+          arr[i].smallpic = picUrl + '/' + arr[i].smallpic
+        }
+        return arr
       }
     },
     mounted () {
@@ -87,10 +94,7 @@
           if (res.status === 200) {
             const data = res.data
             Indicator.close()
-            this.list = data
-            for (let i = 0; i < data.length; i++) {
-              data[i].smallpic = 'http://192.168.0.58/weixin' + data[i].smallpic
-            }
+            this.list = this.addBaseUrl(data)
             // 上拉加载
 //            if (data.state === 1) {
 //              Indicator.close()

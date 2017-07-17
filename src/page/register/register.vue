@@ -11,16 +11,21 @@
            v-model="form.tel"
            :state="$v.form.tel.telValid ? 'success' : 'warning'"
           ></mt-field>
-          <mt-field label="图片验证码"
-           v-model="form.picYzm"
-           :state="$v.form.picYzm.sameAsYzm ? 'success' : 'warning'">
+          <!--<mt-field label="图片验证码"-->
+           <!--v-model="form.picYzm"-->
+           <!--:state="$v.form.picYzm.required ? 'success' : 'warning'">-->
+            <!--<img :src="captchaPic" height="30" width="120" @click="captcha">-->
+          <!--</mt-field>-->
+          <mt-field label="验证码"
+                    v-model="form.picYzm"
+                    :attr="{ maxlength: 5}">
             <img :src="captchaPic" height="30" width="120" @click="captcha">
           </mt-field>
-          <mt-field label="短信验证码"
-           v-model="form.msgYzm"
-           :state="$v.form.msgYzm.required ? 'success' : 'warning'">
-            <span style="height=24px;width=64px;">发送验证码</span>
-          </mt-field>
+          <!--<mt-field label="短信验证码"-->
+           <!--v-model="form.msgYzm"-->
+           <!--:state="$v.form.msgYzm.required ? 'success' : 'warning'">-->
+            <!--<span style="height=24px;width=64px;">发送验证码</span>-->
+          <!--</mt-field>-->
           <mt-field label="密码设置" placeholder="请输入6~20位密码" type="password"
            v-model="form.pwd"
            :state="$v.form.pwd.$invalid ? 'warning' : 'success'"></mt-field>
@@ -40,10 +45,10 @@
 
 <script>
   import vHeader from 'components/header/header3'
-  import { required, sameAs, minLength } from 'vuelidate/lib/validators'
+  import { required, minLength } from 'vuelidate/lib/validators'
   import { isPhone } from '../../plugins/form'
-  import { Toast } from 'mint-ui'
-  import { axios } from 'axios'
+  import { Toast, MessageBox } from 'mint-ui'
+  import axios from 'axios'
 
   export default {
     data () {
@@ -55,26 +60,29 @@
           },
           {
             key: 'picYzm',
-            text: '图片验证码不正确'
+            text: '图片验证码格式不正确'
           },
-          {
-            key: 'msgYzm',
-            text: '短信验证码不正确'
-          },
+//          {
+//            key: 'msgYzm',
+//            text: '短信验证码不正确'
+//          },
           {
             key: 'pwd',
             text: '密码格式不正确'
           }
         ],
-        captchaPic: `http://192.168.0.58/weixin/public/index.php/captcha.html`,
+        captchaPic: ``,
         form: {
           tel: '',
           currentYzm: 'mjsc',
           picYzm: '',
-          msgYzm: '',
+//          msgYzm: '',
           pwd: ''
         }
       }
+    },
+    mounted () {
+      this.captchaPic = this.host.captcha
     },
     methods: {
       regHandle (form) {
@@ -82,10 +90,10 @@
         let showErrorMsg
         requireArr.push(form.tel)
         requireArr.push(form.picYzm)
-        requireArr.push(form.msgYzm)
         requireArr.push(form.pwd)
 
         if (form.$invalid) {
+          console.log('验证不通过')
           for (let i = 0; i < requireArr.length; i++) {
             if (requireArr[i].$invalid) {
               showErrorMsg = this.toastMsg[i].text
@@ -95,14 +103,22 @@
           this.handelToast(showErrorMsg)
         } else {
           let result = Object.assign({}, this.form)
-          const url = '/register'
           delete result.currentYzm
           const formatData = JSON.stringify(result)
 //          this.handelToast('注册成功,控制台查看注册提交信息')
-          console.log(formatData)
-          axios.post(url, formatData)
+//          console.log(formatData)
+          axios.post(this.host.user.reg, formatData)
             .then((res) => {
-              console.log(res)
+              const status = res.data.status
+              if (status === 1) {
+                MessageBox.confirm('注册成功,是否立即登录!', '友情提示').then(() => {
+                  this.$router.push({path: '/login'})
+                }).catch(function () {
+                  // catch 点击确定也会走
+                })
+              } else if (status === 0) {
+                this.handelToast('注册失败,请重试')
+              }
             })
             .catch((err) => {
               console.log(err)
@@ -126,15 +142,17 @@
         tel: {
           telValid: isPhone
         },
-        currentYzm: {
-          required
-        },
+//        currentYzm: {
+//          required
+//        },
         picYzm: {
-          sameAsYzm: sameAs('currentYzm')
+//          sameAsYzm: sameAs('currentYzm')
+          required,
+          minLength: minLength(5)
         },
-        msgYzm: {
-          required
-        },
+//        msgYzm: {
+//          required
+//        },
         pwd: {
           required,
           minLength: minLength(6)

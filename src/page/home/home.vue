@@ -3,7 +3,9 @@
 
       <bg></bg>
 
-      <banner></banner>
+      <banner
+       v-if="swiper.length > 0"
+       :swiper="swiper"/>
 
       <v-menu></v-menu>
 
@@ -32,6 +34,7 @@
     import copyRight from 'components/copyRight/copyRight'
     import vToast from 'components/toast/toast'
     import { Toast } from 'mint-ui'
+    import axios from 'axios'
     import { mapState } from 'vuex'
 
 //    import { Tabbar, TabItem } from 'mint-ui'
@@ -40,7 +43,8 @@
       name: 'Home',
       data () {
         return {
-          showSideBar: false
+          showSideBar: false,
+          swiper: []
         }
       },
       created () {
@@ -65,6 +69,16 @@
 //        } else {
 //          console.log('未登录过')
 //        }
+        axios.get(this.host.index.banner)
+          .then((res) => {
+            if (res.status === 200) {
+              let data = res.data
+              this.swiper = this.imgAddPath(data)
+            }
+          })
+          .catch((err) => {
+            console.log(err)
+          })
       },
       methods: {
         sideBarInit () { // 处理sidebar发来的请求
@@ -78,6 +92,12 @@
             className: 'toast-big',
             duration: 1000
           })
+        },
+        imgAddPath (arr) {
+          for (let i = 0, length = arr.length; i < length; i++) {
+            arr[i] = `${this.host.domain}/weixin/${arr[i]}`
+          }
+          return arr
         }
       },
       components: {

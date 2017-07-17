@@ -10,6 +10,7 @@
       <div class="form-group" v-bind:class="{ 'form-group--error': $v.form.name.$error }">
         <label class="form__label">姓名</label>
         <div class="input-wrap">
+          <i class="fa fa-user-o"></i>
           <input class="form__input b-1px" placeholder="请输入姓名"
            v-model.trim="form.name"
            @input="userTouch($v.form.name)"
@@ -27,6 +28,7 @@
       <div class="form-group" v-bind:class="{ 'form-group--error': $v.form.tel.$error }">
         <label class="form__label">手机号</label>
         <div class="input-wrap">
+          <i class="fa fa-mobile-phone"></i>
           <input class="form__input b-1px" placeholder="请输入手机号" type="number"
            v-model.trim="form.tel"
            @input="$v.form.tel.$touch()"
@@ -46,6 +48,7 @@
 
         <div class="input-wrap pickers-wrap">
           <div class="input-wrap">
+            <i class="fa fa-calendar-minus-o"></i>
             <input class="form__input b-1px" placeholder="请输入预约时间" type="text"
              v-model="form.dateTime"
              @click="open('picker')">
@@ -288,7 +291,7 @@
 </script>
 
 <style scoped lang="scss">
-  $museTthemColor: #009688;
+  $TthemColor: rgb(197,60,67);
 
   .order-wrap{
     margin-top:0rem;
@@ -305,6 +308,26 @@
   }
   .form-group{
     margin:10px;
+    .input-wrap{
+      position: relative;
+      .fa{
+        z-index: 9;
+        position: absolute;
+        top:50%;
+        margin-top:-10px;
+        left:5px;
+        display:block;
+        width:20px;
+        height:20px;
+        color:$TthemColor;
+        font-size:15px;
+        line-height: 20px;
+        text-align: center;
+        &.fa-mobile-phone{
+          font-size:23px;
+        }
+      }
+    }
     .form__label,
     .label-block{
       font-size:12px;
@@ -413,21 +436,22 @@
     border: 1px solid #dddee1;
     border-radius: 4px;
     color: #495060;
+    text-indent: 25px;
     background-color: #fff;
     background-image: none;
     position: relative;
     cursor: text;
     transition: border .2s cubic-bezier(0.45, 0.05, 0.55, 0.95),
-    background .2s cubic-bezier(0.45, 0.05, 0.55, 0.95),
-    box-shadow .2s cubic-bezier(0.45, 0.05, 0.55, 0.95);
-  &:hover,
-  &:focus {
-     border-color: #57a3f3;
-   }
-  &:focus{
-     outline: 0;
-     box-shadow: 0 0 0 2px rgba(45,140,240,.2);
-   }
+            background .2s cubic-bezier(0.45, 0.05, 0.55, 0.95),
+            box-shadow .2s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    &:hover,
+    &:focus {
+       border-color: #57a3f3;
+    }
+    &:focus{
+       outline: 0;
+       box-shadow: 0 0 0 2px rgba(45,140,240,.2);
+    }
   }
   .input-icon-validate{
     position: absolute;

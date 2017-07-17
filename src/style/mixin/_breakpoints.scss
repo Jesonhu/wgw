@@ -1,0 +1,11 @@
+$min: 500px;
+
+@media (min-width: $min) {
+  html,
+  body{
+    font-size:25px!important;
+  }
+  .mint-popup-bottom{
+    top:400px!important;
+  }
+}

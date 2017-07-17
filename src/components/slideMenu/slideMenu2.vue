@@ -26,17 +26,17 @@
           },
           {
             icon: 'fa-home',
-            link: '/',
+            link: '/map',
             name: '提醒'
           },
           {
             icon: 'fa-home',
-            link: '/',
+            link: '/map',
             name: '我的'
           },
           {
             icon: 'fa-home',
-            link: '/',
+            link: '/map',
             name: '分享'
           }
         ]

@@ -9,11 +9,11 @@
         v-for="item in swiper"
         :key="item"
       >
-        <a href="">
+        <router-link to="/">
             <img alt=""
-             :src="item.image"
+             :src="item"
             >
-        </a>
+        </router-link>
       </swiper-slide>
       <!-- 左右按钮 -->
       <!--<div class="swiper-button-prev" slot="button-prev"></div>
@@ -28,6 +28,7 @@
     import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
     export default {
+      props: ['swiper'],
       data () {
         return {
           swiperOption: {
@@ -42,16 +43,11 @@
             paginationClickable: true,
             autoplayDisableOnInteraction: false,
             spaceBetween: 0
-          },
-          swiper: [
-            {
-              'image': 'https://pic.kuaizhan.com/g1/M00/3C/73/wKjmqVghSN-Adb5jAATmNFnetTk8066618/imageView/v1/thumbnail/640x320'
-            },
-            {
-              'image': 'https://pic.kuaizhan.com/g2/M01/3D/82/wKjmqlghSPKAMnkWAASwuOI6-cQ8594518/imageView/v1/thumbnail/640x320'
-            }
-          ]
+          }
         }
+      },
+      mounted () {
+
       },
       components: {
         swiper,

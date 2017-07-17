@@ -12,17 +12,21 @@
            :state="$v.form.tel.telValid ? 'success' : 'warning'"></mt-field>
           <mt-field label="图片验证码"
            v-model="form.picYzm"
-           :state="$v.form.picYzm.sameAsYzm ? 'success' : 'warning'">
+           :attr="{ maxlength: 5}">
            <img :src="captchaPic" height="30" width="120" @click="captcha">
           </mt-field>
-          <mt-field label="短信验证码"
-           v-model="form.msgYzm"
-           :state="$v.form.msgYzm.required ? 'success' : 'warning'">
-            <span style="height=24px;width=64px;">发送验证码</span>
-          </mt-field>
+          <!--<mt-field label="短信验证码"-->
+           <!--v-model="form.msgYzm"-->
+           <!--:state="$v.form.msgYzm.required ? 'success' : 'warning'">-->
+            <!--<span style="height=24px;width=64px;">发送验证码</span>-->
+          <!--</mt-field>-->
           <mt-field label="密码设置" placeholder="请输入6~20位密码" type="password"
            v-model="form.pwd"
            :state="$v.form.pwd.$invalid ? 'warning' : 'success'"></mt-field>
+          <mt-field label="确认密码" placeholder="请再次输入密码" type="password"
+                    v-model="form.repeatPwd"
+                    :state="$v.form.repeatPwd.$invalid ? 'warning' : 'success'"></mt-field>
+          <pre v-if="false" style="margin-top:30px">form: {{ $v.form.repeatPwd }}</pre>
           <button class="submit"
            @click="resetHandle($v.form)">确认</button>
           <div class="method">
@@ -37,7 +41,7 @@
 
 <script>
   import vHeader from 'components/header/header3'
-  import { required, sameAs, minLength } from 'vuelidate/lib/validators'
+  import { required, minLength, sameAs } from 'vuelidate/lib/validators'
   import { isPhone } from '../../plugins/form'
   import { Toast } from 'mint-ui'
   import axios from 'axios'
@@ -54,24 +58,32 @@
             key: 'picYzm',
             text: '图片验证码不正确'
           },
-          {
-            key: 'msgYzm',
-            text: '短信验证码不正确'
-          },
+//          {
+//            key: 'msgYzm',
+//            text: '短信验证码不正确'
+//          },
           {
             key: 'pwd',
             text: '密码格式不正确'
+          },
+          {
+            key: 'confirmPwd',
+            text: '两次密码不一致'
           }
         ],
-        captchaPic: `http://192.168.0.58/weixin/public/index.php/captcha.html`,
+        captchaPic: '',
         form: {
           tel: '',
           currentYzm: 'mjsc',
           picYzm: '',
-          msgYzm: '',
-          pwd: ''
+//          msgYzm: '',
+          pwd: '',
+          repeatPwd: ''
         }
       }
+    },
+    mounted () {
+      this.captchaPic = this.host.captcha
     },
     methods: {
       resetHandle (form) {
@@ -79,8 +91,9 @@
         let showErrorMsg
         requireArr.push(form.tel)
         requireArr.push(form.picYzm)
-        requireArr.push(form.msgYzm)
+//        requireArr.push(form.msgYzm)
         requireArr.push(form.pwd)
+        requireArr.push(form.repeatPwd)
 
         if (form.$invalid) {
           for (let i = 0; i < requireArr.length; i++) {
@@ -92,14 +105,18 @@
           this.handelToast(showErrorMsg)
         } else {
           let result = Object.assign({}, this.form)
-          const url = '/reset'
           delete result.currentYzm
+          delete result.repeatPwd
           const formatData = JSON.stringify(result)
-          this.handelToast('密码重置成功,控制台查看密码提交信息')
-          console.log(formatData)
-          axios.post(url, formatData)
+
+          axios.post(this.host.user.reset, formatData)
             .then((res) => {
-              console.log(res)
+              const status = res.data.status
+              if (status === 1) {
+                console.log('密码重置成功')
+              } else if (status === 0) {
+                console.log('失败')
+              }
             })
             .catch((error) => {
               console.log(error)
@@ -115,7 +132,7 @@
       },
       captcha () { // 验证码检测
         const random = Math.random()
-        this.captchaPic = `http://192.168.0.58/weixin/public/index.php/captcha.html?${random}`
+        this.captchaPic = `${this.host.captcha}?${random}`
       }
     },
     validations: {
@@ -123,18 +140,23 @@
         tel: {
           telValid: isPhone
         },
-        currentYzm: {
-          required
-        },
+//        currentYzm: {
+//          required
+//        },
         picYzm: {
-          sameAsYzm: sameAs('currentYzm')
-        },
-        msgYzm: {
           required
+//          sameAsYzm: sameAs('currentYzm')
         },
+//        msgYzm: {
+//          required
+//        },
         pwd: {
           required,
           minLength: minLength(6)
+        },
+        repeatPwd: {
+          required,
+          sameAsPwd: sameAs('pwd')
         }
       }
     },

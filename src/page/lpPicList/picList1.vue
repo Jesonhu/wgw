@@ -60,8 +60,7 @@
         }
       },
       mounted () {
-        const url = 'http://192.168.0.58/weixin/public/index.php/index/building/index'
-        axios.get(url)
+        axios.get(this.host.lp.list)
           .then((res) => {
             if (res.status === 200) {
               this.addBaseUrl(res.data)
@@ -84,7 +83,7 @@
         addBaseUrl (arr) {
           const picUrl = 'http://192.168.0.58/weixin'
           for (let i = 0; i < arr.length; i++) {
-            arr[i].smallpic = picUrl + '/' + arr[i].smallpic
+            arr[i].smallpic = picUrl + '' + arr[i].smallpic
           }
         }
       },
@@ -179,6 +178,7 @@
             display: block;
             width:100%;
             min-height:100px;
+            max-height: 140px;
           }
         }
         .inof-wrap{

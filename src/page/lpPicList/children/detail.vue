@@ -5,23 +5,23 @@
   <v-header :hasBg="true" :titleName="name"></v-header>
 
     <!-- swiper -->
-  <!--<swiper :options="swiperOption" class="swiper-box">-->
-    <!--<swiper-slide class="swiper-item"-->
-     <!--v-for="item in picList"-->
-     <!--:key="item">-->
-      <!--<a href="" class="link">-->
-        <!--<img alt="" class="img"-->
-         <!--:src="item.pic">-->
-      <!--</a>-->
-    <!--</swiper-slide>-->
-    <!--&lt;!&ndash; 指示按钮 &ndash;&gt;-->
-    <!--<div class="swiper-pagination" slot="pagination"></div>-->
-  <!--</swiper>-->
+  <swiper :options="swiperOption" class="swiper-box">
+    <swiper-slide class="swiper-item"
+     v-for="item in picList"
+     :key="item">
+      <a href="" class="link">
+        <img alt="" class="img"
+         :src="item">
+      </a>
+    </swiper-slide>
+    <!-- 指示按钮 -->
+    <div class="swiper-pagination" slot="pagination"></div>
+  </swiper>
 
     <!-- 内容 -->
-    <div class="con-wrap">
-      <div class="main-con" v-html="detail"></div>
-    </div>
+    <!--<div class="con-wrap">-->
+      <!--<div class="main-con" v-html="detail"></div>-->
+    <!--</div>-->
   </div>
 </template>
 
@@ -48,14 +48,14 @@
     },
     mounted () {
       const queryId = this.$route.query.id
-      const url = `http://192.168.0.58/weixin/public/index.php/index/building/detail/id/${queryId}`
+      const url = `${this.host.lp.detail}${queryId}`
       axios.get(url)
         .then((res) => {
           if (res.status === 200) {
             const data = res.data
             this.name = data.title
-            this.detail = data.content
-            this.picAddUrl()
+            this.detail = data.content // 图文内容
+            this.picList = this.addBaseUrl(data.picList) // 图片内容
           }
         })
         .catch((err) => {
@@ -77,6 +77,17 @@
           console.log(defaultUrl)
           oImgs[i].src = `http://192.168.0.58/weixin/${defaultUrl}`
         }
+      },
+      addBaseUrl (arr) {
+        const picUrl = 'http://192.168.0.58/weixin'
+        for (let i = 0; i < arr.length; i++) {
+          if (!typeof arr[i].smallpic === undefined) {
+            arr[i].smallpic = picUrl + '/' + arr[i].smallpic
+            return
+          }
+          arr[i] = picUrl + arr[i]
+        }
+        return arr
       }
     },
     components: {
@@ -121,6 +132,7 @@
     .link{
       display:block;
       height:100%;
+      width:100%;
       .img{
         display: block;
         width:100%;

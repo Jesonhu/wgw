@@ -45,7 +45,7 @@
     data () {
       return {
         canSubmitMark: false,
-        captchaPic: `http://192.168.0.58/weixin/public/index.php/captcha.html`,
+        captchaPic: ``,
         toastMsg: [
           {
             key: 'tel',
@@ -67,6 +67,9 @@
           yzm: ''
         }
       }
+    },
+    mounted () {
+      this.captchaPic = this.host.captcha
     },
     methods: {
       loginHandle (form) {
