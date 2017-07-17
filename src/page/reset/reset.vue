@@ -43,7 +43,7 @@
   import vHeader from 'components/header/header3'
   import { required, minLength, sameAs } from 'vuelidate/lib/validators'
   import { isPhone } from '../../plugins/form'
-  import { Toast } from 'mint-ui'
+  import { Toast, MessageBox } from 'mint-ui'
   import axios from 'axios'
 
   export default {
@@ -113,9 +113,14 @@
             .then((res) => {
               const status = res.data.status
               if (status === 1) {
-                console.log('密码重置成功')
+                MessageBox.confirm('密码重置成功，是否重新登录?', '友情提示').then(() => {
+                  this.$router.push({path: '/login'})
+                })
+                  .catch(() => {
+                      //
+                  })
               } else if (status === 0) {
-                console.log('失败')
+                this.handelToast('重置失败,请重试')
               }
             })
             .catch((error) => {

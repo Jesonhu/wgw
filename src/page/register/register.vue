@@ -111,7 +111,7 @@
             .then((res) => {
               const status = res.data.status
               if (status === 1) {
-                MessageBox.confirm('注册成功,是否立即登录!', '友情提示').then(() => {
+                MessageBox.confirm('注册成功,是否立即登录?', '友情提示').then(() => {
                   this.$router.push({path: '/login'})
                 }).catch(function () {
                   // catch 点击确定也会走
