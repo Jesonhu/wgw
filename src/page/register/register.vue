@@ -134,7 +134,7 @@
       },
       captcha () { // 验证码检测
         const random = Math.random()
-        this.captchaPic = `http://192.168.0.58/weixin/public/index.php/captcha.html?${random}`
+        this.captchaPic = `${this.host.captcha}?${random}`
       }
     },
     validations: {

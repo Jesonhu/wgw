@@ -1,5 +1,6 @@
 <template>
     <div class="home">
+      <v-audio></v-audio>
 
       <bg></bg>
 
@@ -36,6 +37,7 @@
     import { Toast } from 'mint-ui'
     import axios from 'axios'
     import { mapState } from 'vuex'
+    import vAudio from 'components/music/music'
 
 //    import { Tabbar, TabItem } from 'mint-ui'
 
@@ -106,7 +108,8 @@
         banner,
         sideBar,
         copyRight,
-        vToast
+        vToast,
+        vAudio
       }
     }
 </script>

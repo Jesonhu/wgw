@@ -37,7 +37,7 @@
         headerName: ['最新资讯', '企业动态', '企业活动', '公告'],
         list: {},
         totalList: {},
-        scrollText: '上拉加载更多',
+        scrollText: '',
         allLoaded: false,
         bottomStatus: '',
         wrapperHeight: 0,
@@ -79,7 +79,7 @@
         })
       },
       addBaseUrl (arr) {
-        const picUrl = 'http://192.168.0.58/weixin'
+        const picUrl = `${this.host.domain}/weixin`
         for (let i = 0; i < arr.length; i++) {
           arr[i].smallpic = picUrl + '/' + arr[i].smallpic
         }

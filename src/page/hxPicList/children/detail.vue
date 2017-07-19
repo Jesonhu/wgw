@@ -75,7 +75,7 @@
     },
     methods: {
       addBaseUrl (arr) {
-        const picUrl = 'http://192.168.0.58/weixin'
+        const picUrl = ``
         for (let i = 0; i < arr.length; i++) {
           if (!typeof arr[i].smallpic === undefined) {
             arr[i].smallpic = picUrl + '/' + arr[i].smallpic

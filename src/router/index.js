@@ -7,7 +7,8 @@ import NewList from '@/page/newList/newList'
 import NewDetail from '@/page/newDetail/newDetail'
 import HxType from '@/page/hxPicList/hxPicList'
 import HxDetail from '@/page/hxPicList/children/detail'
-import Map from '@/page/map/map'
+import Map from '@/page/map/address'
+import MapDetail from '@/page/map/map'
 import About from '@/page/about/singlePage'
 import RegisterLogin from '@/page/registerLogin/registerLogin'
 import Order from '@/page/order/order'
@@ -68,6 +69,10 @@ export default new Router({
     { // 项目地图页
       path: '/map',
       component: Map
+    },
+    {
+      path: '/mapdetail',
+      component: MapDetail
     },
     { // 公司简介页
       path: '/about',

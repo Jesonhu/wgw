@@ -1,13 +1,15 @@
 <template>
   <div class="app">
     <transition :name="'page-' + (direction === 'forward' ? 'in' : 'out')">
-      <router-view class="router-view"></router-view>
+      <router-view class="router-view">
+      </router-view>
     </transition>
   </div>
 </template>
 
 <script>
   import tabbar from 'components/bottom-nav/nav1'
+  import vAudio from 'components/music/music'
   import { mapState } from 'vuex'
 
   export default {
@@ -46,7 +48,8 @@
       }
     },
     components: {
-      tabbar
+      tabbar,
+      vAudio
     }
   }
 </script>

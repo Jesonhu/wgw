@@ -79,7 +79,7 @@
         }
       },
       addBaseUrl (arr) {
-        const picUrl = 'http://192.168.0.58/weixin'
+        const picUrl = ``
         for (let i = 0; i < arr.length; i++) {
           if (!typeof arr[i].smallpic === undefined) {
             arr[i].smallpic = picUrl + '/' + arr[i].smallpic
@@ -130,13 +130,15 @@
 
     /* 自添加 */
     .link{
-      display:block;
+      display:flex;
       height:100%;
       width:100%;
+      align-items: center;
+      padding-bottom:50px;
       .img{
         display: block;
         width:100%;
-        height:100%;
+        /*height:100%;*/
       }
     }
   }

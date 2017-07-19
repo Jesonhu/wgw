@@ -58,7 +58,7 @@
     padding-top:2.3rem;
     background:#f3f3f7;
     .bd{
-      $themBgColor: rgb(243,243,247);
+      $themBgColor: rgb(255,255,255);
       margin-top:0rem;
       min-height: calc(100vh - 2rem);
       background:$themBgColor;

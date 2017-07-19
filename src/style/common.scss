@@ -224,7 +224,8 @@ image[lazy=loading] {
 }
 
 /* 文章详情 */
-.content{
+.content,
+.single-page{
   .a-image{
     display:block;
     img{
@@ -237,6 +238,9 @@ image[lazy=loading] {
     max-width: 100%;
   }
 }
+
+/* 等比缩放背景图片 */
+
 
 @import 'mixin/1px';
 @import "mixin/breakpoints";

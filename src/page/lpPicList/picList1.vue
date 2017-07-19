@@ -81,7 +81,7 @@
           this.isShowList = !this.isShowList
         },
         addBaseUrl (arr) {
-          const picUrl = 'http://192.168.0.58/weixin'
+          const picUrl = `${this.host.domain}/weixin`
           for (let i = 0; i < arr.length; i++) {
             arr[i].smallpic = picUrl + '' + arr[i].smallpic
           }
@@ -169,11 +169,12 @@
         width:50%;
         padding-right:8px;
         margin-bottom:10px;
+        font-size:.8rem;
         overflow: hidden;
         .link{
           display: block;
           position: relative;
-          border:1px solid rgba(0,0,0,.3);
+          border:1px solid rgba(0,0,0,.0);
           .img{
             display: block;
             width:100%;
