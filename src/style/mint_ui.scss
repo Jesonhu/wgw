@@ -1,0 +1,40 @@
+.picker-item {
+  width:115%;
+  font-size:13px;
+}
+
+/*  Toast样式自定义 */
+.mint-toast{
+  // background:rgba(0,0,0,.5);
+  .mint-toast-text{
+    color:#fff;
+  }
+}
+.toast-big{
+  padding: 30px!important;
+}
+
+/* mint-field */
+// 文字设置
+.mint-cell-wrapper{
+  font-size:12px;
+}
+/* mint-field提示颜色优化 */
+.mint-field-state{
+  .mintui{
+    &.mintui-field-success{
+      color: #4caf50;
+    }
+    &.mintui-field-warning{
+      color: #ffc107;
+    }
+    &.mintui-field-error{
+      color: #f44336;
+    }
+  }
+}
+.mint-field {
+ .mint-cell-title {
+   width:66px!important;
+ }
+}
